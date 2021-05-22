@@ -65,6 +65,12 @@ hoge.txtをcurlコマンドでhttpbinに送信してください
 
 ## curl クイズ2
 
+HTTP ヘッダを出力に含めるオプションは？
+
+1. -i
+2. --head
+3. -I
+
 ## curl クイズ3
 
 ## postman クイズ1
