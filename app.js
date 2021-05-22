@@ -5,11 +5,17 @@ const port = 8080;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.status(200).json({ text: 'hello world' });
 });
 
 app.post('/', (req, res) => {
-  res.json('Hello World!');
+  if (req.is('application/json')) {
+    const { name } = req.body;
+
+    res.status(201).json({ name });
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.listen(port, () => {
