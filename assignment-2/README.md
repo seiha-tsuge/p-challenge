@@ -45,23 +45,17 @@ hoge.txtをcurlコマンドでhttpbinに送信してください
 
 ```
 {
-  "args": {},
   "data": "hello world",  // ここが重要！
-  "files": {},
-  "form": {},
-  "headers": {
-    "Accept": "*/*",
-    "Content-Length": "11",
-    "Content-Type": "text/plain",
-    "Host": "httpbin.org",
-    "User-Agent": "curl/7.64.1",
-    "X-Amzn-Trace-Id": "Root=1-60a930e4-7d427bfd4723e56402c5c569"
-  },
-  "json": null,
-  "origin": "xxxxxxxxxxx", 
-  "url": "https://httpbin.org/post"
 }
 ```
+
+上記課題を満たすために以下のcurlコマンドを実行しました。
+
+```
+curl -☆ ☆sample.txt -H "Content-Type: text/plain" https://httpbin.org/post
+```
+
+☆に入る値はなんでしょう（☆は２つあります）
 
 ## curl クイズ2
 
@@ -72,6 +66,30 @@ HTTP ヘッダを出力に含めるオプションは？
 3. -I
 
 ## curl クイズ3
+
+curlでCookieをhttpbinに送信してください
+
+- Cookieの値は、"name=hoge"
+- methodはGet
+- URLはhttps://httpbin.org/cookies
+
+以下のようなレスポンスを得られるはずです
+
+```
+{
+  "cookies": {
+    "name": "hoge"
+  }
+}
+```
+
+上記課題を満たすために以下のcurlコマンドを実行しました。
+
+```
+curl -☆ "name=hoge" https://httpbin.org/cookies
+```
+
+☆に入る値はなんでしょう（☆は１つあります）
 
 ## postman クイズ1
 
