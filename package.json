@@ -6,16 +6,8 @@
   "scripts": {
     "serve": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://seiha-tsuge:b877cba45c4ae35db8e72d1bdb1fcdc06bb2917a@github.com/seiha-tsuge/p-challenge.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/seiha-tsuge/p-challenge/issues"
-  },
-  "homepage": "https://github.com/seiha-tsuge/p-challenge#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
