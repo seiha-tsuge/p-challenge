@@ -52,7 +52,7 @@ hoge.txtをcurlコマンドでhttpbinに送信してください
 上記課題を満たすために以下のcurlコマンドを実行しました。
 
 ```
-curl -☆ ☆sample.txt -H "Content-Type: text/plain" https://httpbin.org/post
+curl -☆ ☆hoge.txt -H "Content-Type: text/plain" https://httpbin.org/post
 ```
 
 ☆に入る値はなんでしょう（☆は２つあります）
