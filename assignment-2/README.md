@@ -93,6 +93,30 @@ curl -☆ "name=hoge" https://httpbin.org/cookies
 
 ## postman クイズ1
 
+Postmanのリクエストが実行される前にJavascriptを実行できる機能の名前は？
+
 ## postman クイズ2
 
+Postmanで、課題1のレスポンスステータスコードが200であるテストを書くには、
+Testsでどのように書けばよいでしょう
+以下の☆に入る言葉を教えてください！
+
+```
+pm.test("Status code is 200", function () {
+    pm.response.to.have.☆☆☆☆☆☆(200);
+});
+```
+
+参考：[Writing tests](https://learning.postman.com/docs/writing-scripts/test-scripts/)
+
 ## postman クイズ3
+
+Postmanで、課題1のレスポンスに「"X-Test": "hello"'」が含まれているテストを書くには、
+Testsでどのように書けばよいでしょう
+以下の☆に入る言葉を教えてください！
+
+```
+pm.test("Body matches string", function () {
+    pm.expect(pm.☆☆☆☆☆☆☆☆.text()).to.include('"X-Test": "hello"');
+});
+```
