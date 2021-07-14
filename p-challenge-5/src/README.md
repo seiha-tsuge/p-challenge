@@ -29,4 +29,4 @@ ngrok http 8081
 <img src="https://port8081.ngrok.io/splatoon.png"/>
 ```
 
-1. 先程`ngrok http 8080`で公開したhttpsのURLを表示。`third-cookie: fuga`が設定されていることを確認
+2. 先程`ngrok http 8080`で公開したhttpsのURLを表示。`third-cookie: fuga`が設定されていることを確認
