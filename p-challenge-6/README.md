@@ -54,4 +54,30 @@ Simple Requestについては後述する。
 
 ## 問題2
 
+ブラウザからのリクエストにはCookieが自動で付与されるが、CORSの場合はCookieが自動で付与されると問題になる場合がある。
+例えば、ログイン済みのCookieを持っているユーザーにだけ重要な情報の閲覧を許可していたとする。
+そして、他のサービスと連携するために、Access-Control-Allow-Originを*で設定していたとする。
+この場合、
+この場合、 Intra にログイン済みのユーザを Attack に誘導することができれば、 Cookie で制限されていた情報の取得や、重要な操作が可能になる。 CORS をよく理解してない開発者が CORS 対応を実施した際に、こうした意図せぬ挙動を誘発してしまう可能性は少なくない。
+
+## 問題3
+
+- 仕様で定義された[CORS-Safelisted Method](https://fetch.spec.whatwg.org/#cors-safelisted-method)および[CORS-Safelisted Request Header](https://fetch.spec.whatwg.org/#cors-safelisted-request-header)を満たしていること。
+
+- Content-Typeヘッダーでは以下の値のみが使用されていること。
+  - application/x-www-form-urlencoded
+  - multipart/form-data
+  - text/plain
+- リクエストに使用されるどのXMLHttpRequestUploadにもイベントリスナーが登録されていないこと。
+- リクエストに ReadableStream オブジェクトが使用されていないこと。
+[参考](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS#simple_requests)
+
+## 問題4
+
+シンプルなリクエストの場合はpreflightリクエストが送信されず、そのままリクエストがサーバに到達します。サーバからのレスポンスのAccess-Control-Allow-Originヘッダーに、リクエスト送信元のオリジンが含まれない場合、ブラウザはどのような挙動を取るでしょうか？
+
+## 問題5
+
+XMLHttpRequestを使ってクロスオリジンリクエストを発行する際、デフォルトの挙動だとリクエストにクッキーが含まれません。クッキー情報を含むためには、何をする必要があるでしょうか？
+
 ## クイズ1
