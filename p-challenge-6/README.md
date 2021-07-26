@@ -69,7 +69,7 @@ Simple Requestについては後述する。
   - multipart/form-data
   - text/plain
 - リクエストに使用されるどのXMLHttpRequestUploadにもイベントリスナーが登録されていないこと。
-- リクエストに ReadableStream オブジェクトが使用されていないこと。
+- リクエストに ReadableStream オブジェクトが使用されていないこと。  
 [参考](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS#simple_requests)
 
 ## 問題4
