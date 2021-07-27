@@ -20,15 +20,15 @@ yarn serve
 
 1. `yarn serve`で公開した http://localhost:3000/を表示。
 2. 「POST Request」ボタンをクリック。
-3. HTTP レスポンスステータスコード 200 が返ってくることを確認。
+3. 開発者ツールの Network タブで HTTP レスポンスステータスコード 200 が返ってくることを確認。
 4. 「PUT Request」ボタンをクリック。
-5. CORS error になることを確認。
+5. 開発者ツールの Network タブで CORS error になることを確認。
 
 > それ以外のオリジンから POST リクエストを受けた時は、CORS 制約によりアクセスが制限されるようなサーバを作成してください
 
 1. `ngrok http 3000`でサーバーを公開し、https の URL を表示。
 2. 「POST Request」ボタンをクリック。
-3. CORS error になることを確認。
+3. 開発者ツールの Network タブで CORS error になることを確認。
 
 ### 仕様 2 の確認
 
@@ -36,7 +36,7 @@ yarn serve
 
 1. `yarn serve`で公開した http://localhost:3000/を表示。
 2. 「Simple Request」ボタンをクリック。
-3. preflight が行われないことを確認
+3. 開発者ツールの Network タブで preflight が行われないことを確認
 
 ### 仕様 3 の確認
 
@@ -44,6 +44,6 @@ yarn serve
 
 1. `yarn serve`で公開した http://localhost:3000/を表示。
 2. 「POST Request」ボタンをクリック。
-3. preflight が行われることを確認
+3. 開発者ツールの Network タブで preflight が行われることを確認
 4. 「POST Simple Request」ボタンをクリック。
-5. preflight が行われないことを確認
+5. 開発者ツールの Network タブで preflight が行われないことを確認
