@@ -132,7 +132,7 @@ HTTP ヘッダは様々な中継サーバによって追加されることがあ
 - Content-Type
 - Authorization
 
-[CORS-Safelisted Response Header](https://fetch.spec.whatwg.org/#cors-safelisted-response-header-name)
+[CORS-Safelisted Response Header](https://fetch.spec.whatwg.org/#cors-safelisted-response-header-name)  
 [Access-Control-Expose-Headers](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
 
 ## 課題4
