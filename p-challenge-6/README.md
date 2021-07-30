@@ -89,7 +89,11 @@ await fetch("https://attack.example", {
 
 ## 問題4
 
-シンプルなリクエストの場合はpreflightリクエストが送信されず、そのままリクエストがサーバに到達します。サーバからのレスポンスのAccess-Control-Allow-Originヘッダーに、リクエスト送信元のオリジンが含まれない場合、ブラウザはどのような挙動を取るでしょうか？
+CORS エラーが発生し、ブラウザによりレスポンスがブロックされる。
+
+```
+Access to fetch at 'http://localhost:8080/' from origin 'https://a3a6a06d6fa0.ngrok.io' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:3000' that is not equal to the supplied origin. Have the server send the header with a valid value, or, if an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+```
 
 ## 問題5
 
