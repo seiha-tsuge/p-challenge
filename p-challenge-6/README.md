@@ -136,3 +136,11 @@ HTTP ヘッダは様々な中継サーバによって追加されることがあ
 [Access-Control-Expose-Headers](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
 
 ## 課題4
+
+適用されない。  
+CORSはブラウザの仕組みであり、CORSの制約はcURLには適用されない。
+
+> ブラウザーがオリジンをまたいだリクエストのレスポンスに、フロントエンドの JavaScript コードがアクセスすることをブロックするかどうかを決めるものです。
+
+[CORS](https://developer.mozilla.org/ja/docs/Glossary/CORS)
+[参考](https://rso.hateblo.jp/entry/2019/02/13/225329)
