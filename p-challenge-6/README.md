@@ -97,6 +97,15 @@ Access to fetch at 'http://localhost:8080/' from origin 'https://a3a6a06d6fa0.ng
 
 ## 問題5
 
-XMLHttpRequestを使ってクロスオリジンリクエストを発行する際、デフォルトの挙動だとリクエストにクッキーが含まれません。クッキー情報を含むためには、何をする必要があるでしょうか？
+フロントエンド
+
+- XMLHttpRequest.withCredentialsをtrueに設定する
+
+バックエンド
+
+- access-control-allow-credentialsにtrueを設定する
+- Cookieを設定する際にSameSite属性をNoneにする
+
+[参考](https://qiita.com/y_tochukaso/items/78972e0e2917bb11fa10)
 
 ## クイズ1
