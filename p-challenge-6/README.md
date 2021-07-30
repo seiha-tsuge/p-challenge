@@ -114,8 +114,25 @@ Access to fetch at 'http://localhost:8080/' from origin 'https://a3a6a06d6fa0.ng
 
 ### クイズ1
 
+xxxxxx-xxxxxxx-xxx-xxx レスポンスヘッダーを指定することができる。このレスポンスヘッダーに秒数を指定すると、その期間内は同じレスポンスに含まれる Access-Control-Allow-Methods と Access-Control-Allow-Headers の情報をキャッシュ可能にし、 Preflight Request の省略を許可できる。
+
+xxxxxx-xxxxxxx-xxx-xxx レスポンスヘッダーはなんでしょう？
+
 ### クイズ2
 
+xxxxxx-xxxxxxx-xxx-xxx（クイズ1の答え） レスポンスヘッダーのデフォルト値は何秒？
+
+[参考](https://fetch.spec.whatwg.org/#http-access-control-max-age)
+
 ### クイズ3
+
+HTTP ヘッダは様々な中継サーバによって追加されることがあり、重要な情報を含みます。その中には、JavaScriptから取得されることを想定していないものも多く、それが脆弱性の原因になる可能性があります。そこでJavaScriptからアクセス可能なヘッダが限定されています。明示的な許可がなくアクセス可能なヘッダは次のうちどれでしょう？
+
+- Connection
+- Content-Type
+- Authorization
+
+[CORS-Safelisted Response Header](https://fetch.spec.whatwg.org/#cors-safelisted-response-header-name)
+[Access-Control-Expose-Headers](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
 
 ## 課題4
