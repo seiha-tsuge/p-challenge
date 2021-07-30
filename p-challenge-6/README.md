@@ -142,5 +142,5 @@ CORSはブラウザの仕組みであり、CORSの制約はcURLには適用さ�
 
 > ブラウザーがオリジンをまたいだリクエストのレスポンスに、フロントエンドの JavaScript コードがアクセスすることをブロックするかどうかを決めるものです。
 
-[CORS](https://developer.mozilla.org/ja/docs/Glossary/CORS)
+[CORS](https://developer.mozilla.org/ja/docs/Glossary/CORS)  
 [参考](https://rso.hateblo.jp/entry/2019/02/13/225329)
