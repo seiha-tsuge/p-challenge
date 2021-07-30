@@ -1,6 +1,8 @@
 # 課題6
 
-## 問題１
+## 課題1
+
+### 問題1
 
 Wev APIを利用したアプリケーションではよく、フロントエンドとバックエンドが別々のオリジンで配信される。
 しかし、画面生成元のオリジンとリクエスト先のオリジンが異なる場合、同一オリジンポリシーによりレスポンスを処理することができない。
@@ -52,7 +54,7 @@ Access-Control-Max-Age: 86400
 一方で、Preflight Requestが不要なリクエストをSimple Requestと呼ぶ。
 Simple Requestについては後述する。
 
-## 問題2
+### 問題2
 
 Access-Control-Allow-Origin: * は、すべてのオリジンからのリクエストを許可する。
 これは、攻撃者に重要な情報が盗まれる可能性がある。  
@@ -75,7 +77,7 @@ await fetch("https://attack.example", {
 
 このような攻撃が成立しないようにするために、Access-Control-Allow-Originには、信頼できるオリジンを設定した方が良い。
 
-## 問題3
+### 問題3
 
 - 仕様で定義された[CORS-Safelisted Method](https://fetch.spec.whatwg.org/#cors-safelisted-method)および[CORS-Safelisted Request Header](https://fetch.spec.whatwg.org/#cors-safelisted-request-header)を満たしていること。
 
@@ -87,7 +89,7 @@ await fetch("https://attack.example", {
 - リクエストに ReadableStream オブジェクトが使用されていないこと。  
 [参考](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS#simple_requests)
 
-## 問題4
+### 問題4
 
 CORS エラーが発生し、ブラウザによりレスポンスがブロックされる。
 
@@ -95,7 +97,7 @@ CORS エラーが発生し、ブラウザによりレスポンスがブロック
 Access to fetch at 'http://localhost:8080/' from origin 'https://a3a6a06d6fa0.ngrok.io' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:3000' that is not equal to the supplied origin. Have the server send the header with a valid value, or, if an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
 
-## 問題5
+### 問題5
 
 フロントエンド
 
@@ -108,4 +110,12 @@ Access to fetch at 'http://localhost:8080/' from origin 'https://a3a6a06d6fa0.ng
 
 [参考](https://qiita.com/y_tochukaso/items/78972e0e2917bb11fa10)
 
-## クイズ1
+## 課題2
+
+### クイズ1
+
+### クイズ2
+
+### クイズ3
+
+## 課題4
