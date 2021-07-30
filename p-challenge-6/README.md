@@ -141,6 +141,6 @@ HTTP ヘッダは様々な中継サーバによって追加されることがあ
 CORSはブラウザの仕組みであり、CORSの制約はcURLには適用されない。
 
 > ブラウザーがオリジンをまたいだリクエストのレスポンスに、フロントエンドの JavaScript コードがアクセスすることをブロックするかどうかを決めるものです。
+[引用: CORS](https://developer.mozilla.org/ja/docs/Glossary/CORS)  
 
-[CORS](https://developer.mozilla.org/ja/docs/Glossary/CORS)  
 [参考](https://rso.hateblo.jp/entry/2019/02/13/225329)
