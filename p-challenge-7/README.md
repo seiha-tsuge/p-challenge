@@ -45,6 +45,12 @@ CDNとプロキシによるキャッシュの大きな違いは、ユーザー�
 
 [動的な配信](https://developers.google.com/search/mobile-sites/mobile-seo/dynamic-serving?hl=ja#the-vary-http-header)
 
+#### Cache-Control
+
+ディレクティブと呼ばれるコマンドを指定することで、キャッシュの動作を指定する。
+指定するディレクティブにはパラメータがあるものとないものがあり、複数のディレクティブを指定する場合には、カンマで区切る。
+[Cache-Control](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cache-Control)
+
 HTTP通信における、ブラウザがキャッシュを制御するために存在するヘッダーを3つ以上挙げて、それぞれの役割を説明してください
 
 ### 問題4
