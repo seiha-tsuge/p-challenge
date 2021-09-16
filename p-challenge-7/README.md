@@ -73,13 +73,17 @@ Expires ヘッダをつけてコンテンツを返却すると、指定された
 
 > どうすれば良いのでしょうか？
 
-Last-Modified レスポンスヘッダーとIf-Modified-Since リクエストヘッダーを使用する
+- Last-Modified レスポンスヘッダーとIf-Modified-Since リクエストヘッダーを使用する
 
-If-Modified-Since リクエストヘッダーは、リクエストを条件付きにすることができ、リソースの更新日時がフィールド値より新しいならばリクエストを受け付けて欲しいとサーバーに伝えることができる。フィールド値に指定した日時以降に、指定したリソースが更新されていない場合には、ステータスコード304 Not Modifiedレスポンスを返す。取得したリソースの更新日時は、Last-Modified レスポンスヘッダーを確認することで知ることができる。
+If-Modified-Since リクエストヘッダーは、条件付きリクエストの1つで、リソースの更新日時がフィールド値より新しいならばリクエストを受け付けて欲しいとサーバーに伝えることができる。フィールド値に指定した日時以降に、指定したリソースが更新されていない場合には、ステータスコード304 Not Modifiedレスポンスを返す。取得したリソースの更新日時は、Last-Modified レスポンスヘッダーを確認することで知ることができる。
 
+- If-None-Match リクエストヘッダーとETag レスポンスヘッダーを使用する
+
+If-None-Match リクエストヘッダーは、条件付きリクエストの1つで、If-None-Matchのフィールド値に指定したEtag値が、指定したリソースのEtag値と一致しないならリクエストを受け付けて欲しいとサーバーに伝えることができる。一致する場合には、ステータスコード304 Not Modifiedレスポンスを返す。
 
 [参考: 仕組みから理解するブラウザキャッシュ](https://satoyan419.com/post/browser-caching/)
 [参考: If-Modified-Since](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-Modified-Since)
+[参考: If-None-Match](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-None-Match)
 
 ### 問題6
 
