@@ -81,8 +81,8 @@ If-Modified-Since リクエストヘッダーは、条件付きリクエスト�
 
 If-None-Match リクエストヘッダーは、条件付きリクエストの1つで、If-None-Matchのフィールド値に指定したEtag値が、指定したリソースのEtag値と一致しないならリクエストを受け付けて欲しいとサーバーに伝えることができる。一致する場合には、ステータスコード304 Not Modifiedレスポンスを返す。
 
-[参考: 仕組みから理解するブラウザキャッシュ](https://satoyan419.com/post/browser-caching/)
-[参考: If-Modified-Since](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-Modified-Since)
+[参考: 仕組みから理解するブラウザキャッシュ](https://satoyan419.com/post/browser-caching/)  
+[参考: If-Modified-Since](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-Modified-Since)  
 [参考: If-None-Match](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-None-Match)
 
 ### 問題6
