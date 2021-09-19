@@ -21,8 +21,8 @@ HTML/CSS/JavaScript/画像などをキャッシュすることで、これらの
 CDNとはContent Delivery Networkの略で、グローバルにキャッシュサーバーを分散配置し、エンドユーザーに最も近い経路にあるキャッシュサーバーからコンテンツを配信する仕組み。
 キャッシュサーバーを用いることで、リソースを持ったオリジンサーバーへのアクセスを減らすことができるため、通信量や通信時間などを節約することができる。
 
-[参考: CDN](https://www.otsuka-shokai.co.jp/words/cdn.html)  
-[参考: Webサイトの表⽰速度をCDN・キャッシュで改善して顧客を逃さない](https://www.ntt.com/bizon/network-ict_website-response.html)
+[CDN](https://www.otsuka-shokai.co.jp/words/cdn.html)  
+[Webサイトの表⽰速度をCDN・キャッシュで改善して顧客を逃さない](https://www.ntt.com/bizon/network-ict_website-response.html)
 
 #### プロキシキャッシュ
 
@@ -36,7 +36,7 @@ CDNとプロキシによるキャッシュの大きな違いは、ユーザー�
 プロキシサーバーは構成的にオリジンサーバーの近くに展開することが多いため、たとえば、オリジンサーバーが日本にあると、プロキシサーバーにキャッシュしていても海外からのアクセスなどはそこまで効果的に処理できない。
 一方、CDNはクライアントに近い場所でレスポンスすることができるため、プロキシサーバーより通信時間を節約できる可能性がある。
 
-[参考: Web配信の技術―HTTPキャッシュ・リバースプロキシ・CDNを活用する](https://gihyo.jp/book/2021/978-4-297-11925-6)
+[Web配信の技術―HTTPキャッシュ・リバースプロキシ・CDNを活用する](https://gihyo.jp/book/2021/978-4-297-11925-6)
 
 ### 問題3
 
@@ -58,10 +58,56 @@ CDNとプロキシによるキャッシュの大きな違いは、ユーザー�
 
 ### 問題4
 
-- ブラウザのキャッシュサイズの上限は、ユーザが自由に変更できます
-  - キャッシュサイズの容量上限を超えると何が起きるでしょうか？容量上限はどの程度でしょうか？
-    - ヒント：ブラウザにより挙動が異なります
-    - 「上限に達したら何が起きるのか」「上限容量の感覚値」「ブラウザごとに差分があること」を認識してもらうのが目的のため、ブラウザのソースコードなどを読み解いて正確な値を調べていただく必要はございません！
+> キャッシュサイズの容量上限を超えると何が起きるでしょうか？
+
+#### Chrome
+
+キャッシュサイズの容量から自動で必要なときに削除する
+
+[Google Chrome のキャッシュのサイズを設定する](https://www.tipsfound.com/chrome/01003)
+
+#### Firefox
+
+- LRU ポリシーによりもっとも古く使用されたものから削除される
+- オリジン立ち退き (origin eviction) と呼ばれる処理を実行して、ストレージの総量が再び上限を下回るまで、オリジン全体に相当するデータを削除する
+
+[ブラウザーのストレージ制限と削除基準](https://www.tipsfound.com/chrome/01003)
+
+#### Internet Explorer 10 以降
+
+10MBを超えた場合、ユーザーに通知される
+
+[Storage for the web](https://web.dev/storage-for-the-web/)
+
+> 容量上限はどの程度でしょうか？
+
+#### Chrome
+
+キャッシュのサイズ上限は、利用可能なディスク容量の割合を計算し設定する。たとえば、ディスク容量が 10 GB であれば、キャッシュの上限は 1 GB に設定する。
+また、2GBを超える値は無視される。
+
+[管理者の皆様へ: Chrome のパフォーマンスを強化する改良点とポリシーをご確認ください](https://cloud.google.com/blog/ja/products/chrome-enterprise/improvements-and-polices-make-chrome-more-performant)  
+[Max disk cache size in google chrome](https://stackoverflow.com/questions/22280326/max-disk-cache-size-in-google-chrome)  
+[What is Chrome default cache size limit?](https://newbedev.com/what-is-chrome-default-cache-size-limit)
+
+#### Firefox
+
+- ブラウザーのストレージの最大容量は動的であり、ハードディスクドライブのサイズに応じて変わる。
+- グローバルリミットはディスクの空き量量の 50%
+
+[ブラウザーのストレージ制限と削除基準](https://www.tipsfound.com/chrome/01003)
+
+#### Internet Explorer 10 以降
+
+最大250MB
+
+[Storage for the web](https://web.dev/storage-for-the-web/)
+
+#### Safari
+
+約1GB
+
+[Storage for the web](https://web.dev/storage-for-the-web/)
 
 ### 問題5
 
@@ -70,7 +116,7 @@ CDNとプロキシによるキャッシュの大きな違いは、ユーザー�
 Expires ヘッダをつけてコンテンツを返却すると、指定された日時を過ぎるまでキャッシュを利用するため、オリジンサーバー上のコンテンツが更新されたとしても、更新内容を反映することができない。 
 よって更新頻度が高い動的コンテンツにはExpiresは使わない方が良い
 
-[参考: HTTPレスポンスヘッダ Expires とは？](https://weblabo.oscasierra.net/http-header-response-expires/)
+[HTTPレスポンスヘッダ Expires とは？](https://weblabo.oscasierra.net/http-header-response-expires/)
 
 > どうすれば良いのでしょうか？
 
@@ -82,9 +128,9 @@ If-Modified-Since リクエストヘッダーは、条件付きリクエスト�
 
 If-None-Match リクエストヘッダーは、条件付きリクエストの1つで、If-None-Matchのフィールド値に指定したEtag値が、指定したリソースのEtag値と一致しないならリクエストを受け付けて欲しいとサーバーに伝えることができる。一致する場合には、ステータスコード304 Not Modifiedレスポンスを返す。
 
-[参考: 仕組みから理解するブラウザキャッシュ](https://satoyan419.com/post/browser-caching/)  
-[参考: If-Modified-Since](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-Modified-Since)  
-[参考: If-None-Match](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-None-Match)
+[仕組みから理解するブラウザキャッシュ](https://satoyan419.com/post/browser-caching/)  
+[If-Modified-Since](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-Modified-Since)  
+[If-None-Match](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-None-Match)
 
 ### 問題6
 
