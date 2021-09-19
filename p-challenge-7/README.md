@@ -137,14 +137,14 @@ If-None-Match リクエストヘッダーは、条件付きリクエストの1�
 
 #### GitHub
 
-<img width="1273" alt="スクリーンショット 2021-09-20 2 30 55" src="https://user-images.githubusercontent.com/49358142/133937098-b217b0d7-9717-462d-9987-83e0fa62bead.png">
+<img width="1346" alt="スクリーンショット 2021-09-20 2 29 13" src="https://user-images.githubusercontent.com/49358142/133937120-8b8b8ac4-a79e-4f38-9267-361ee68e2aa1.png">
 
 サーバーからStatus Code 200を受け取っているので、 コンテンツを取得している。  
 cache-control: max-age=0が設定されているため、キャッシュは即時に古くなる。  
 また、must-revalidateが設定されているため、サーバーに問い合わせてコンテンツが変更されていないことが確認できた場合のみ、キャッシュを利用する。  
 コンテンツが変更されていないことを確認するために、Response Headersに含まれるetag: W/"05310d956120c3971f6068e43d92fb20"　を利用している。
 
-<img width="1346" alt="スクリーンショット 2021-09-20 2 29 13" src="https://user-images.githubusercontent.com/49358142/133937120-8b8b8ac4-a79e-4f38-9267-361ee68e2aa1.png">
+<img width="1273" alt="スクリーンショット 2021-09-20 2 30 55" src="https://user-images.githubusercontent.com/49358142/133937098-b217b0d7-9717-462d-9987-83e0fa62bead.png">
 
 サーバーからStatus Code 304を受け取っているので、 ブラウザはローカルキャッシュを利用している。  
 Request Headersのif-none-matchにetag: W/"05310d956120c3971f6068e43d92fb20"の値を渡して、コンテンツが変わって変更されていないことを確認している。
