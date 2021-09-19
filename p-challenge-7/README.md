@@ -151,7 +151,7 @@ Request Headersのif-none-matchにetag: W/"05310d956120c3971f6068e43d92fb20"の�
 
 #### スプラトゥーン2 任天堂
 
-サーバーからStatus Code 200を受け取っているので、 コンテンツを取得している。 
+サーバーからStatus Code 200を受け取っているので、 コンテンツを取得している。  
 コンテンツが更新されていないことを確認するために、Response Headersにlast-modified: Wed, 18 Aug 2021 14:58:47 GMTが含まれている。  
 
 サーバーからStatus Code 304を受け取っているので、 ブラウザはローカルキャッシュを利用している。  
