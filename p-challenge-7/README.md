@@ -151,8 +151,13 @@ Request Headersのif-none-matchにetag: W/"05310d956120c3971f6068e43d92fb20"の�
 
 #### スプラトゥーン2 任天堂
 
+
+### クイズ1<img width="1346" alt="スクリーンショット 2021-09-20 2 29 13" src="https://user-images.githubusercontent.com/49358142/133937769-802b2fe9-78b3-4092-9671-576f91881770.png">
+
 サーバーからStatus Code 200を受け取っているので、 コンテンツを取得している。  
 コンテンツが更新されていないことを確認するために、Response Headersにlast-modified: Wed, 18 Aug 2021 14:58:47 GMTが含まれている。  
+
+<img width="1273" alt="スクリーンショット 2021-09-20 2 30 55" src="https://user-images.githubusercontent.com/49358142/133937766-2be311c1-d3c5-4690-b6b0-cb7b3d152945.png">
 
 サーバーからStatus Code 304を受け取っているので、 ブラウザはローカルキャッシュを利用している。  
 Request Headersのif-modified-since: Wed, 18 Aug 2021 14:58:47 GMTの値を渡して、コンテンツが変わって変更されていないことを確認している。
@@ -165,8 +170,6 @@ Request Headersのif-modified-since: Wed, 18 Aug 2021 14:58:47 GMTの値を渡�
 ## 課題３
 
 ## 課題4
-
-### クイズ1
 
 ### クイズ2
 
