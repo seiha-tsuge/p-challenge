@@ -1,4 +1,4 @@
-# p-challenge−5
+# p-challenge−7
 
 ## 使用方法
 
@@ -14,19 +14,13 @@ yarn install
 yarn serve
 ```
 
-### ローカルサーバーを公開
+### ブラウザのキャッシュが使われていることの確認
 
-```ngrok
-ngrok http 8080
-ngrok http 8081
-```
+1. `http://localhost:8081`にアクセスし、HTTP ステータスコード 200 が返ってきていることを確認
+1. 再度、`http://localhost:8081`にアクセスし、HTTP ステータスコード 304 が返ってきていることを確認
 
-### Cookie の確認
+### ブラウザのキャッシュが使われていないことの確認
 
-1. public-1/index.html に記述されている以下の`port8081`を先程`ngrok http 8081`で公開した https の URL に置き換える
-
-```html
-<img src="https://port8081.ngrok.io/splatoon.png" />
-```
-
-2. 先程`ngrok http 8080`で公開した https の URL を表示。`third-cookie: fuga`が設定されていることを確認
+1. `http://localhost:8080`にアクセスし、HTTP ステータスコード 200 が返ってきていることを確認
+1. Cache-control: no-store が設定されていることを確認
+1. 再度、`http://localhost:8081`にアクセスし、HTTP ステータスコード 200 が返ってきていることを確認
