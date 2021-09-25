@@ -152,15 +152,15 @@ Request Headersのif-none-matchにetag: W/"05310d956120c3971f6068e43d92fb20"の�
 
 #### スプラトゥーン2 任天堂
 
-<img width="1384" alt="スクリーンショット 2021-09-26 1 53 09" src="https://user-images.githubusercontent.com/49358142/134779770-ce5f0c38-53f4-4c95-aa47-5d50f9685b38.png">
+<img width="1379" alt="スクリーンショット 2021-09-26 1 57 17" src="https://user-images.githubusercontent.com/49358142/134779874-4ecd8c7b-103b-4f19-a613-2bb45878c933.png">
 
 サーバーからStatus Code 200を受け取っているので、 コンテンツを取得している。  
-コンテンツが更新されていないことを確認するために、Response Headersにlast-modified: Wed, 18 Aug 2021 14:58:47 GMTが含まれている。  
+コンテンツが更新されていないことを確認するために、Response Headersにlast-modified: Fri, 24 Sep 2021 06:08:41 GMTが含まれている。  
 
-<img width="1384" alt="スクリーンショット 2021-09-26 1 54 43" src="https://user-images.githubusercontent.com/49358142/134779806-10fb9974-1444-4b43-b87d-bcda82e132a2.png">
+<img width="1380" alt="スクリーンショット 2021-09-26 1 58 14" src="https://user-images.githubusercontent.com/49358142/134779921-30cf450c-f799-4703-a9aa-395ad38b3f42.png">
 
 サーバーからStatus Code 304を受け取っているので、 ブラウザはローカルキャッシュを利用している。  
-Request Headersのif-modified-since: Wed, 18 Aug 2021 14:58:47 GMTの値を渡して、コンテンツが変わって変更されていないことを確認している。
+Request Headersのif-modified-since: Fri, 24 Sep 2021 06:08:41 GMTの値を渡して、コンテンツが変わって変更されていないことを確認している。
 
 #### Google Store
 
