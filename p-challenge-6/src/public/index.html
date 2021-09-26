@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>p-challenge</title>
+  </head>
+  <body>
+    <button onclick="postRequest()">POST Request</button>
+    <button onclick="putRequest()">PUT Request</button>
+    <button onclick="simpleRequest()">Simple Request</button>
+    <button onclick="postSimpleRequest()">POST Simple Request</button>
+
+    <script>
+      const postRequest = () => {
+        fetch('http://localhost:8080', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      };
+
+      const putRequest = () => {
+        fetch('http://localhost:8080', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      };
+
+      const simpleRequest = () => {
+        fetch('http://localhost:8080')
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      };
+
+      const postSimpleRequest = () => {
+        fetch('http://localhost:8080', {
+          method: 'POST',
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      };
+    </script>
+  </body>
+</html>
