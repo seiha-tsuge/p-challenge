@@ -47,7 +47,7 @@ OS コマンドインジェクション脆弱性が発生するケースには�
 
 シェルには、1 行の指定で複数のプログラムを起動する方法が用意されている。Unix シェルの場合は、以下の記法が使える。
 
-<img width="401" alt="スクリーンショット 2021-10-20 18 47 41" src="https://user-images.githubusercontent.com/49358142/138070725-e54fffea-446b-4798-9f51-29de1bbeae57.png">
+<img width="401" alt="OS コマンドインジェクション" src="https://user-images.githubusercontent.com/49358142/138070725-e54fffea-446b-4798-9f51-29de1bbeae57.png">
 
 Windows の cmd.exe の場合は、「&」により複数のコマンドを続けて実行できる。また、| や、&&, || も Unix 同様利用可能。シェルの利用時に特別な意味を持つ記号文字をメタ文字と呼ぶ。
 OS コマンドのパラメーターとして指定する文字列に、シェルのメタ文字を混入させることにより、開発者の意図とは異なる OS コマンドが実行可能となることが OS コマンドインジェクション脆弱性の原因。
@@ -197,3 +197,81 @@ OWASP が対策としてあげているものは以下のサイトから確認�
 - クロスサイトスクリプティング
 - クロスサイトリクエストフォージェリ
 - OS コマンドインジェクション
+
+## 課題 3
+
+### Command Injection
+
+<img width="675" alt="Command Injection" src="https://user-images.githubusercontent.com/49358142/138423700-07a65ff6-706e-4d62-b9d9-b50dd931f512.png">
+
+#### 防御手段
+
+> チェック方法には、その引数に許可する文字の組み合わせを洗い出し、その組み合わせ以外は許可しない「ホワイトリスト方式」をお勧めします。  
+> チェック方法には、OS コマンド・インジェクション攻撃に悪用される記号文字（「|」、「<」、「>」等）等、問題となりうる文字を洗い出し、これを許可しない「ブラックリスト方式」もありますが、この方法はチェックに漏れが生じる可能性があるため、お勧めできません。  
+> [安全なウェブサイトの作り方 - 1.2 OS コマンド・インジェクション](https://www.ipa.go.jp/security/vuln/websecurity-HTML-1_2.html)
+
+【ブラックリスト方式】  
+シェルのメタ文字をエスケープする
+
+<img width="565" alt="Command Injection" src="https://user-images.githubusercontent.com/49358142/138427626-69ecaaa6-ffa2-4dc4-8670-1cb878fe22a3.png">
+
+【ホワイトリスト方式】  
+IP アドレスの入力のみ受け付ける
+
+<img width="682" alt="Command Injection" src="https://user-images.githubusercontent.com/49358142/138428919-5126f059-2c1b-4137-b38b-181d57e2987f.png">
+
+<img width="1066" alt="Command Injection" src="https://user-images.githubusercontent.com/49358142/138428739-7ab57a1a-0341-4ce1-8033-b9590ea6c896.png">
+
+### Cross Site Request Forgery (CSRF)
+
+今すぐモテたい方はこちらを[クリック](http://localhost/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change)
+
+クリックし、パスワードが変更された結果が以下
+
+<img width="1405" alt="Cross Site Request Forgery" src="https://user-images.githubusercontent.com/49358142/138434986-1e6aa707-88b4-4bf6-a91e-2cb313c14466.png">
+
+#### 防御手段
+
+- Referer のチェック
+
+Referer のチェックには欠点がある。パーソナルファイヤーウォールやブラウザのアドオンなどで、Referer が送信されないように設定している利用者は、ページを実行できなくなる。
+
+<img width="617" alt="Cross Site Request Forgery" src="https://user-images.githubusercontent.com/49358142/138449129-ce9dfc1a-fa57-41ce-b4bf-ff254a0a3c36.png">
+
+- CSRF トークンを含める
+- 確認用パスワードの入力を求める
+
+<img width="685" alt="Cross Site Request Forgery" src="https://user-images.githubusercontent.com/49358142/138449172-1b16614b-a889-4a7a-9b02-bce6bfa29528.png">
+
+<img width="607" alt="Cross Site Request Forgery" src="https://user-images.githubusercontent.com/49358142/138449663-160bc9f0-6b19-452a-8acb-4fff676c1298.png">
+
+### SQL Injection
+
+<img width="675" alt="SQL Injection" src="https://user-images.githubusercontent.com/49358142/138451709-aa802873-c97d-4f53-8ecb-d69e6be857d1.png">
+
+#### 防御手段
+
+- トークンのチェック
+- 数値でなければ SQL を実行しない
+- プレースホルダとバインド機構により SQL 文を組み立てる
+- エスケープ処理を施す
+
+<img width="705" alt="SQL Injection" src="https://user-images.githubusercontent.com/49358142/138462408-334ee6ca-fa44-48ae-9948-ee642f8fa93a.png">
+
+[参考: 【PHP】PDO の静的プレースホルダと動的プレースホルダの違いを確認する](https://qiita.com/7968/items/7ddd59b94eb5a4fb6eaf)
+
+### Reflected Cross Site Scripting (XSS)
+
+> ?name=<script>alert(document.cookie)</script>
+
+<img width="466" alt="Reflected Cross Site Scripting" src="https://user-images.githubusercontent.com/49358142/138475814-4a6598e4-822c-4343-84a3-7c194974b5a2.png">
+
+#### 防御手段
+
+- 特殊文字をエスケープする
+
+<img width="593" alt="Reflected Cross Site Scripting" src="https://user-images.githubusercontent.com/49358142/138479651-685c32c7-9ff9-4ce8-9824-e74d77559b78.png">
+
+<img width="837" alt="Reflected Cross Site Scripting" src="https://user-images.githubusercontent.com/49358142/138480540-48b1b63e-729a-47f9-bd75-d70bdf3530f9.png">
+
+[htmlspecialchars](https://www.php.net/manual/ja/function.htmlspecialchars.php)
