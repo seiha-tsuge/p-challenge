@@ -26,8 +26,8 @@
   - 他言語対応で`react-intl`を使用しているとする。その場合、翻訳が変更されるとソースコードが変更されていなくてもスナップショットテストが失敗する可能性がある。
 - スナップショットは HTML ベースの差分で、CSS 周りの差分が含まれず、UI の変化が確認できない
 
-[スナップショットテストの向き不向きについて考えてみる](https://www.mizdra.net/entry/2021/02/04/003728)
-[ABEMA でスナップショットテストをやめて Visual Regression Testing に移行する話](https://developers.cyberagent.co.jp/blog/archives/29784/)
+[スナップショットテストの向き不向きについて考えてみる](https://www.mizdra.net/entry/2021/02/04/003728)  
+[ABEMA でスナップショットテストをやめて Visual Regression Testing に移行する話](https://developers.cyberagent.co.jp/blog/archives/29784/)  
 [フロントエンドのスナップショットテスト](https://ichi.pro/furonto-endo-no-sunappushotto-tesuto-270085827256954)
 
 ## 課題 3
