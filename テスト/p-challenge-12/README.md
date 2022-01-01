@@ -1,5 +1,39 @@
 # 課題 12
 
+## 課題 1
+
+### 問題 1
+
+#### Square の中身（o,x）を赤色に変えてください
+
+#### ビジュアルリグレッションテストが変更を検知していることを確認してください
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147850914-6889b48d-3818-4d78-9774-e9a8c9a02c4e.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851074-aefa63b7-81cd-41e2-a10a-a84614b400be.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851079-ad11a775-7828-4e0f-b101-04dba5106922.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851088-18735be4-20a2-47b5-baf5-ece5ae4d2b60.png">
+
+#### 変更を受け入れて、スクリーンショットを更新しましょう
+
+```
+yarn test --updateSnapshot
+```
+
+#### 間違って 3x3 ではなく、4x3 の board を作成してみてください
+
+#### ビジュアルリグレッションテストが変更を検知していることを確認してください
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851452-cc3be671-c256-4b20-98fc-fea4862ecacf.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851471-6d7ffd47-5c1b-44a2-9e34-43835ec8110b.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851474-1005d2af-a604-4717-8e0c-60c8edcddfeb.png">
+
+<img width="320" alt="" src="https://user-images.githubusercontent.com/49358142/147851476-baaaf1f9-edae-4e83-830a-289a97fe816e.png">
+
 ## 課題 2
 
 ### 問題 1
