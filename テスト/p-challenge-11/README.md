@@ -30,6 +30,43 @@
 [ABEMA でスナップショットテストをやめて Visual Regression Testing に移行する話](https://developers.cyberagent.co.jp/blog/archives/29784/)  
 [フロントエンドのスナップショットテスト](https://ichi.pro/furonto-endo-no-sunappushotto-tesuto-270085827256954)
 
+## 課題 2
+
+### 問題 2
+
+#### どんな情報が記載されているでしょうか？
+
+生成された`__snapshots__/Storyshots.test.js.snap`ファイルの中身は以下のように、各ストーリー（特定の状態で描画された要素）のスナップショットが作成されている。
+
+```
+exports[`Storyshots Board All O 1`] = `
+<div> ...
+</div>
+`;
+
+exports[`Storyshots Board All Tryangle 1`] = `
+<div> ...
+</div>
+`;
+
+exports[`Storyshots Board All X 1`] = `
+<div> ...
+</div>
+`;
+```
+
+### 問題 3
+
+#### スナップショットテストが落ちて、変更箇所が示されるはずです
+
+<img width="360" alt="スクリーンショット 2022-01-01 14 32 35" src="https://user-images.githubusercontent.com/49358142/147844596-b9eacaa7-25ec-4286-97ee-f28003aac8a3.png">
+
+#### 変更点をスナップショットに反映してみましょう
+
+```
+yarn test --updateSnapshot
+```
+
 ## 課題 3
 
 ### クイズ 1
@@ -42,23 +79,22 @@ Storybook でスナップショットテストを行うアドオンは次のう�
 
 ### クイズ 2
 
-Jestにおけるスナップショットテスト
+Jest におけるスナップショットテスト
 
-アプリケーション全体の構築が必要となるグラフィカルなUIをレンダリングする代わりに、☆☆☆☆☆☆可能なReactツリーの値を素早く生成するテスト用レンダラーを利用できます。
+アプリケーション全体の構築が必要となるグラフィカルな UI をレンダリングする代わりに、☆☆☆☆☆☆ 可能な React ツリーの値を素早く生成するテスト用レンダラーを利用できます。
 
-☆☆☆☆☆☆に入る言葉は何でしょう？
+☆☆☆☆☆☆ に入る言葉は何でしょう？
 
 <details>
 <summary>ヒント</summary>
 
-[Jestにおけるスナップショットテスト](https://jestjs.io/ja/docs/snapshot-testing#jest%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%82%B9%E3%83%8A%E3%83%83%E3%83%97%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%83%86%E3%82%B9%E3%83%88)
+[Jest におけるスナップショットテスト](https://jestjs.io/ja/docs/snapshot-testing#jest%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%82%B9%E3%83%8A%E3%83%83%E3%83%97%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%83%86%E3%82%B9%E3%83%88)
 
 </details>
 
-
 ### クイズ 3
 
-Jestでは、☆☆☆☆☆☆(クイズ 2の回答)された値をどのように使用して、スナップショットテストを行いますか？
+Jest では、☆☆☆☆☆☆(クイズ 2 の回答)された値をどのように使用して、スナップショットテストを行いますか？
 
 <details>
 <summary>ヒント</summary>
