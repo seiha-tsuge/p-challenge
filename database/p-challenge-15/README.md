@@ -16,7 +16,7 @@ WHERE
   OrderDate LIKE "1996%"
 GROUP BY
   CustomerID
-HAVING COUNT(CustomerID) >= 3
+HAVING number_of_orders >= 3
 ORDER BY
   number_of_orders DESC
 ```
