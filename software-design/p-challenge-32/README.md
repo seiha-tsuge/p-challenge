@@ -2,7 +2,16 @@
 
 ## 課題1
 
-### 問題1
+### SOLID原則
+
+SOLID原則は、オブジェクト指向設計でよく知られている5つの原則を表している。
+
+- 単一責任（Single Responsibility）
+- オープン・クローズド（Open-Closed）
+- リスコフの置換（Liskov Substitution）
+- インターフェース分離（Interface Segregation）
+- 依存性逆転（Dependency Inversion）
+
 
 ## 任意課題
 
