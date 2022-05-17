@@ -136,18 +136,146 @@ func calcLength(a: Point, b: Point): Int {
 
 ### 結合度
 
-モジュール間で、呼び出し関係にあるメソッドの結び付きの強さを表す指標。結合度が高くなると複数のモジュール間で依存度が上がってしまうため、保守やメンテナンス、仕様変更などの対応がしづらくなる。また、設計的な観点からしても、複雑で分かりづらいものになってしまう。
+モジュール間で、呼び出し関係にあるメソッドの結び付きの強さを表す指標。結合度が高くなると複数のモジュール間で依存度が上がってしまうため、保守やメンテナンス、仕様変更などの対応がしづらくなる。
+
+[モジュール結合度を理解する](https://zenn.dev/taiga533/articles/e08ad4f4af5577079b5b)  
+[良いコードとは何か - エンジニア新卒研修 スライド公開](https://note.com/cyberz_cto/n/n26f535d6c575)
 
 #### 内部結合
 
+あるモジュールが別のモジュールの内部実装に依存している状態を指す。
+
+``` Java
+public String getEmployeeFullNameById(int employeeId) {
+   Employee emp = employeeRepository.findById(employeeId);
+   return emp.getFirstName() + emp.getLastName();
+}
+```
+
+仕様変更でEmployeeクラスにmiddleNameが追加された場合、getEmplopeeFullNameByIdは名前通りの役目を果たせない。
+
+``` Java
+public String getEmployeeFullNameById(int employeeId) {
+   Employee emp = employeeRepository.findById(employeeId);
+   return emp.getFullName();
+}
+```
+
+Employeeクラス側にフルネームを取得するためのメソッドを設ける。
+
 #### 共通結合
+
+複数のモジュールが同じ上書き可能なグローバル変数を参照している状態を指す。
+
+``` Scala
+val data: Data = Data()
+
+fun updateA() {
+    data.value = "a"
+}
+
+fun updateB() {
+    data.value = "b"
+}
+```
+
+- そもそもグローバル変数を参照しない
+- 変数をグローバルに公開せず、外部から変更を受け付ける際はメソッド経由とする
 
 #### 外部結合
 
+外部ライブラリや外部デバイスへの接続手段を複数のモジュールで共有している状態を指す。
+
+```Java
+public int getServerStatus() {
+ // HttpClinetは外部ライブラリのクラス
+ HttpClient client = HttpClient.newHttpClient();
+ HttpResponse&lt;String&gt; response = client.send(
+     HttpRequest
+         .newBuilder(new URI("http://development.local/"))
+         .GET()
+         .build(),
+     BodyHandler.asString()
+ );
+ return response.statusCode();
+}
+```
+
+getServerStatus()を各所から参照するだけならいい。しかし、HttpClient（外部ライブラリに含まれるクラス）を様々な場所で参照している場合は、外部ライブラリに依存している。
+
 #### 制御結合
+
+あるモジュールに情報を渡すことで、別のモジュールの処理を制御している状態を指す。論理的凝集が発生する。
+
+```Java
+public void registerUser(User user) {
+ if(user.getCountry() == Country.JP) {
+   // 国内ユーザーの登録処理
+   return;
+ }
+ // 海外ユーザーの登録処理
+}
+```
+
+国ごとに違う登録処理をregisterUser()が知っていなければならない。
+
+```Java
+public void registerUser(User user) {
+ UserRegisterService userRegisterService = user.getCountry() == Country.JP
+     ? this.japaneseUserRegisterService() : this.foreignUserRegisterService();
+
+ userRegisterService.register(user);
+}
+```
+
+登録処理の詳細は別クラスに隠蔽し、registerUserはどの国のユーザー登録処理においても同じ処理を実行するだけにするのが対策となる。
 
 #### スタンプ結合
 
+モジュールに引数として渡されたオブジェクトの一部しか使わない状態を指す。
+
+```Java
+public String findUserEmailAddress(User user) {
+ return UserEmailManageService.findByUserId(user.getId());
+}
+```
+
+Userインスタンスのデータ構造に依存している。Userクラスからidが消えた場合、機能しなくなる。
+
+```Java
+public String findUserEmailAddress(int userId) {
+ return UserEmailManageService.findByUserId(userId);
+}
+```
+
+- 必要な値を全て個々の引数として渡す
+- 引数に必要な機能を定義したinterfaceだけ渡す
+
+ある程度の妥協は必要。例えば、関数に渡す引数が4個以上の場合は、構造体を渡す等。
+
 #### データ結合
 
+参照するモジュールで必要ば最小限のデータを、個々の引数で受け渡ししている状態を指す。
+
+```Java
+public findBuyableProduct(int userId, CountryType countryType) {
+ ResourceQuery query = new ResourceQuery();
+ query.addIntFilter(userId);
+ query.addStringFilter(countryType.value());
+ return productRepository.findByQuery(query);
+}
+```
+
+スタンプ結合よりは結合度が低くなる。
+
 #### メッセージ結合
+
+- 引数のないやり取り
+- データのやり取りは存在しない
+
+```Javascript
+
+function hoge() {
+    fuga()
+}
+```
