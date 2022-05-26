@@ -25,8 +25,158 @@ SOLID原則は、オブジェクト指向設計でよく知られている5つ�
 なぜ、オープン・クローズドが重要なのか。  
 すでに動作している既存コードに変更を加えると、バグを発生させる可能性があり、バグを発生させないために動作確認を行うなどのコストを支払う必要がある。一方で、既存のコードを変更せずに機能を追加できる設計にしておくことで、すでに動作している機能を壊すこと無く、新機能を追加できる。
 
-[TypeScriptでSOLID原則〜開放閉鎖の原則〜](https://www.membersedge.co.jp/blog/typescript-solid-open-closed-principle/)
+[TypeScriptでSOLID原則〜開放閉鎖の原則〜](https://www.membersedge.co.jp/blog/typescript-solid-open-closed-principle/)  
+[SOLID原則】オープン・クローズドの原則 - OCP](https://zenn.dev/chida/articles/d859839928a39d)
 
+#### リスコフの置換
+
+リスコフの置換は次のように表せる。
+
+> 型がTであるオブジェクトxについて証明できる属性をq(x)と表す。このとき、型がSであるオブジェクトyについてq(y)が真となる。ただし、型Sは型Tの派生型であるとする。
+
+つまり、親クラスと子クラスがある場合に、親クラスと子クラスは異なる振る舞いを起こさず、互換性を持っている。  
+なぜ、リスコフの置換が重要なのか。  
+この原則に従うことで、スーパークラスが使えるところではサブクラスが使えるアプリケーションを作ることができる。また、モジュールをインクルードするオブジェクト同士であれば、互いに入れ替えてもモジュールのロールを担えると信頼できる。
+
+[オブジェクト指向設計実践ガイド～Rubyでわかる 進化しつづける柔軟なアプリケーションの育て方](https://gihyo.jp/book/2016/978-4-7741-8361-9)
+
+#### インターフェース分離
+
+インターフェース分離は、「クライアントにとって不要なインターフェースへの依存を強要してはならない」と述べられる。インターフェースを正しく分割することでクライアントのニーズを正確に満たすことを意味する。
+なぜ、インターフェース分離が重要なのか。  
+インタフェースを小さい単位に分離することで、各クライアントは実際に自分が利用するメソッドだけに依存するようになり、他のクライアントの変更の影響を最小限に抑えることができる。
+
+[【SOLID原則】インタフェース分離の原則 - ISP](https://zenn.dev/chida/articles/882aad07effa5c)
+
+#### 依存性逆転
+
+依存性逆転は2つの重要なことがある。
+
+> a.上位のモジュールは下位のモジュールに依存してはならない。どちらのモジュールも「抽象」に依存すべきである。
+> b.「抽象」は実装の詳細に依存してはならない。実装の詳細が「抽象」に依存すべきである
+
+なぜ、依存性逆転が重要なのか。
+依存性逆転を適用させると、上位モジュールは下位モジュールの変更の影響を受けなくなる。
+
+[【SOLID原則】依存性逆転の原則 - DIP](https://zenn.dev/chida/articles/e46a66cd9d89d1)
+
+[SOLID Principles - simple and easy explanation](https://github.com/nahidulhasan/solid-principles)
+[clean-code-typescript](https://msakamaki.github.io/clean-code-typescript/#solid)
+
+### リスコフの置換原則に違反した場合、どのような不都合が生じるか
+
+正方形と長方形の例で説明する。数学的に正方形は長方形だが、継承による「is-a」関係を使いモデル化すると、問題が発生しやすくなる。
+
+Bad:
+
+```Typescript
+class Rectangle {
+  constructor(
+    protected width: number = 0,
+    protected height: number = 0) {
+
+  }
+
+  setColor(color: string): this {
+    // ...
+  }
+
+  render(area: number) {
+    // ...
+  }
+
+  setWidth(width: number): this {
+    this.width = width;
+    return this;
+  }
+
+  setHeight(height: number): this {
+    this.height = height;
+    return this;
+  }
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  setWidth(width: number): this {
+    this.width = width;
+    this.height = width;
+    return this;
+  }
+
+  setHeight(height: number): this {
+    this.width = height;
+    this.height = height;
+    return this;
+  }
+}
+
+function renderLargeRectangles(rectangles: Rectangle[]) {
+  rectangles.forEach((rectangle) => {
+    const area = rectangle
+      .setWidth(4)
+      .setHeight(5)
+      .getArea(); // BAD: Returns 25 for Square. Should be 20.
+    rectangle.render(area);
+  });
+}
+
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeRectangles(rectangles);
+```
+
+Good:
+
+```Typescript
+abstract class Shape {
+  setColor(color: string): this {
+    // ...
+  }
+
+  render(area: number) {
+    // ...
+  }
+
+  abstract getArea(): number;
+}
+
+class Rectangle extends Shape {
+  constructor(
+    private readonly width = 0,
+    private readonly height = 0) {
+    super();
+  }
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Shape {
+  constructor(private readonly length: number) {
+    super();
+  }
+
+  getArea(): number {
+    return this.length * this.length;
+  }
+}
+
+function renderLargeShapes(shapes: Shape[]) {
+  shapes.forEach((shape) => {
+    const area = shape.getArea();
+    shape.render(area);
+  });
+}
+
+const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
+renderLargeShapes(shapes);
+```
+
+[clean-code-typescript](https://msakamaki.github.io/clean-code-typescript/#solid)
 
 ## 任意課題
 
