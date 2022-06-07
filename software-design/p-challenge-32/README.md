@@ -60,8 +60,15 @@ SOLID原則は、オブジェクト指向設計でよく知られている5つ�
 
 [【SOLID原則】依存性逆転の原則 - DIP](https://zenn.dev/chida/articles/e46a66cd9d89d1)
 
-[SOLID Principles - simple and easy explanation](https://github.com/nahidulhasan/solid-principles)
-[clean-code-typescript](https://msakamaki.github.io/clean-code-typescript/#solid)
+### 単一責任の原則と、単純にファイルを細かなファイルに分解することには、どのような違いがあるでしょうか？
+
+単一責任の原則は、各クラスが細かなファイルに分割されていないことを意味するものでは無い。各クラスは明確に定義された振る舞いからなり、全てのメソッドとプロパティは、同じ目標に向かって動作する必要がある。つまり、一つのクラスは単一の責任を持つべきであり、複数の目的や責任を果たす場合は、新しいクラスを作成する必要がある。
+
+### Open-Closed-Principleの実例を一つ考えて、作成してみてください
+
+https://www.typescriptlang.org/ja/play?#code/MYGwhgzhAEBKCmwAuYB2BzE9oG8BQ00A7gJYAmSAFgFzSoCuAtgEbwBOA3AdJfCepSS0GLdl27AA9qghI29ZJLYAKUhRp0mrNgBoefAUM2i2ASlzdCVEhAB0aqtAC8xclS6ErlG7d79Bzvr+SB7QAL54EXigkDAAwiRsoNj4hGxgZCT0EMJaYngS0rLyiirpmdm5JuapntZ25VkwLo3ZoRFRMVDQcZKyALJoYOjsFoTAYCDA9OBI8MoQlGAADvC0CMhomNgAPj2JyTWW0FhI0GBs8GCh40VnUrIACuwAqqgkZy4AjLYArDfQEgAM2gCyWq0BMhQqGA8EkII20O2R08nguV0CixW8Hsbko0AAVNAsatfAZBACwtB4CAICljoR0WBMeCca0YESSWyMk1CdBBlRbI8AJKUgqoy5IehsVDQB5IZ5sN4fPlM9qRApSKFyg5YQKoeBEfZJLDKX6mLha2TQS7IfWGuCIJGmgAcenNlru0EkzAAVvajb0BkMRioLZqipIsLYQJJ0Mofb7bBMpjMwHNlMBdfBTOGgA
+
+https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgIJQnAkua8nIDeAUMsgnADYICulck6mAFAJQBcyINAtgEbQA3MQC+xYgnoBnKcgBKEBGDggA5pRTAeABw08I4WU2y5YiFCTIB3YABMwAC07d+Q0sgcRgqh2Ge8BKGF3BAB7ECkwKBolUKhmG3snLgDoABoPLx8-FNcoViJ3MkdgKQA6RMdkAF5kSodhMmKHUrLPb18azI6wRuQxEKpaekYMODZCpvJwyOQ4Ma6S8vbs5AAqZCWKu0ci5AwwGigQObG+sQHJOBlkAGFgKElNHT0DMCMxnEgzAkt9uFswBoUn8eWCZDCESiMTAcWYUABQJBuUCBT+zVaCMBwK6WKR53EEKGdAYEGME3R+wgh2Omxa5TxOI2W0Zsg2AFkGA4ygAFLAEy7SWS3UKRTkgOCqaCTcjEkYQZhSBxwbQQTjGL54cxovaQ2ZhSI86AAVRAwDAXQAjGUAKx9CEzC2w5SUEWzWoGsBGqCm83rZBKlUQMoUagk0YsVj2qk0k7Oqhu3ruC7iPUWhAPJ5dEAQKx3TMaZg2qMSR3IUJ8ABW2dzd1FYHFkugbGEetCGjKlFCqmYFcrIblpOYGceGlYJaAA
 
 ### リスコフの置換原則に違反した場合、どのような不都合が生じるか
 
@@ -444,3 +451,6 @@ function hoge() {
     fuga()
 }
 ```
+
+[SOLID Principles - simple and easy explanation](https://github.com/nahidulhasan/solid-principles)
+[clean-code-typescript](https://msakamaki.github.io/clean-code-typescript/#solid)
