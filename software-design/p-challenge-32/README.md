@@ -188,7 +188,36 @@ renderLargeShapes(shapes);
 ### インターフェースを用いる事で、設計上どのようなメリットがあるでしょうか？
 
 interfaceを使うと、分岐ロジックを書かずに分岐と同じことが実現可能になる。そのため、条件分岐が大幅に減り、ロジックがシンプルになる。
-https://www.typescriptlang.org/play?#code/MYGwhgzhAEBKCmwAuYB2BzE9oG8BQ00wA9qhEgE4CuyxFAFAA5UBGIAlsNAO7sAmSABYAuaKioBbFvAoAaaMzadog+O3SCko8VJkBKXAULQh7CADpeAwdAC8PfkIDcRwqYur1muyrUakLoQAvnhGYBTwYPR62pLSFIbG0BFIVBSoJoJmlo42AFSZ2Z7+gdAhIXigkDAAwpxYiUSk5NS0DIocXBRgfOxUELG6FAb4Se7m3b39PpN9EKUVhOGR0YPxjYQpaRkAsmBC5gAKAJLQBeOz0+dZFpfzRuWhAGZUqMjspNAQgsTcAIIRKLfMCMeCiBDINCYbAAH2gdVA8BGRnYT2g9GBoOg7DIKDe8GIaIheOhyKSJDIxCw5hAxHQ9AABsSoQ1lmBsTAACQ4THwcxs6JBBl6BahQio9G87G4tDAAlohFYMnGCkQKl82n0hmK7BsjnQbm8-mAwXC0UVVVIZKIK32VDwbhwG0s+D0ADM8gALCLKs11TS6fQIshjSs9D7fbiiPVsHaHfCY-QAKw+1X+zX0YAx0NRcMuIA
+
+[https://www.typescriptlang.org/](https://www.typescriptlang.org/play?#code/MYGwhgzhAEBKCmwAuYB2BzE9oG8BQ00wA9qhEgE4CuyxFAFAA5UBGIAlsNAO7sAmSABYAuaKioBbFvAoAaaMzadog+O3SCko8VJkBKXAULQh7CADpeAwdAC8PfkIDcRwqYur1muyrUakLoQAvnhGYBTwYPR62pLSFIbG0BFIVBSoJoJmlo42AFSZ2Z7+gdAhIXigkDAAwuwUoNj4hCRklDRIdEysHFwUYHzsVBCxuhQGzcbu5v2Dwz6zQxClFYThkdGj8YnGKWkZALJgQuYACgCS0AXTi-PXWRa3y0bloQBmVKjI7KTQEILEbgAQQiUX+YEY8FECGQaEw2AAPtA6g0sBMjOw3tB6ODIdB2G00MB4MQsTCUBg0TsWqQIMQsOYQMR0PQAAbkuFYaDrMD4mAAEhwuPg5h50SCrL0K1ChEx2OF+MJXxJWJRjXRSVadIZTJZrLqjW5oL50EFwtFoPFkulFS1SGSiHt9lQ8G4cEdnPg9AAzPIACxSyq0+ki3X0CLIC0bPSBoNtIj1Q3O13IxNYegAVkDWpDjOZ9GAaZFYpjLiAA)
+
+面積を求めるメソッドは同名のareaで、同じようにコールできそうな見た目。しかし、実際にはRectangleとCicleクラスは異なる。したがって、以下のようにRectangle型の変数にCicle型インスタンスは代入できない。
+
+``` TypeScript
+// 異なる型のインスタンスは代入できない。
+const rect: Rectangle = new Circle(8);
+rect.area()
+```
+
+面積を表示する共通メソッドを作りたくても、instanceofを使って型判定しなければならない。
+
+``` TypeScript
+function showArea(shape: Rectangle | Circle) {
+  if (shape instanceof Rectangle) {
+    console.log(`Rectangle area is ${shape.area()}`);
+  }
+
+  if (shape instanceof Circle) {
+    console.log(`Cicle area is ${shape.area()}`);
+  }
+}
+```
+
+[https://www.typescriptlang.org/p](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgMoAs4AcUG8BQyycUEcAFAJQBcyAbgPbAAmA3PgL774IA2cAZwHIAShARg4IAOa8UwALZY5CiOGEZseQsgQMQAsFACuEhlHJZjAI17AEyAO4sw6WiGMLr0ADTIrtvbI6BDA0uhg7p7eUJTIBERErsACAHTOzK7IALxOLujsicjJaSFhETnBoeFghchcOiRkVFFe0PE6RKRgxlAgxegp6fnIAFQDQ2U1dVwNfILCAMLAUHzySipqYBqYOB1EegZGpmDmljZ2DlBwzMDGAq0xcQmJJanXt-eVH3cCM9xEJoUGjIDxtKD7RLdXr9ACycFcqQACgBJMYTNI-L7jN5Yv46WbcGDGEASYD6ZACdAMRwAQVIFCpWlomhwzx0hwEDDkqV4DGk5AABmIJFJZCggcgUsgACS4Jk4VJAqgcQWUdhzfSGZCkCSVEAQRyicSSGRycgAZj8ABZ1TwtdyILz+eRdWAlQyqHb7UddCs1vrDchlqtzQBWO2cx3OgUIf085WUO1AA)
+
+同じ型として利用できるので、型の判定が不要になる。
+
+interfaceを用いて処理を切り替える方法をストラテジーパターンと言う。
 
 ### どんな時に依存性の逆転を用いる必要が生じるのでしょうか？
 
