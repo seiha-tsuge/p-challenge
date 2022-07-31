@@ -250,6 +250,19 @@ hash.keys.sort.joinは、Stringを返す。
 
 #### これだけでは特にコードの保守性に対して効果が無いことを説明してあげてください
 
+``` Java
+public final class Garage {
+   public void isAllowed(Car car) {
+      Owner owner = car.getOwner(); // Allowed?
+      ...
+   }
+}
+```
+
+`car`オブジェクトは、メソッドの直接的なパラメータなので、このオブジェクトのメソッド呼び出しはデメテルの法則に反しない。しかし、`getOwner`メソッドは`Owner`オブジェクトを返すが、これはパラメータでもなければ、`Garage`が直接アクセスできるオブジェクトでもない。したがって、このオブジェクトに対してこれ以上メソッドを呼び出すことはできない。ゲッターを呼び出すこと自体は、デメテルの法則に反しないが、その結果を実際に使うことはデメテルの法則に違反する。
+
+[The Genius of the Law of Demeter](https://javadevguy.wordpress.com/2017/05/14/the-genius-of-the-law-of-demeter/)
+
 ## 任意課題
 
 ### 凝集度
