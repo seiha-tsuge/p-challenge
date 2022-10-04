@@ -57,6 +57,9 @@
 SELECT * FROM dept_emp WHERE from_date = '1986-06-26';
 ```
 
+<img width="754" alt="スクリーンショット 2022-10-04 22 47 04" src="https://user-images.githubusercontent.com/49358142/193836861-6f8b63fe-075b-4a30-ba46-a74ba06de6cc.png">
+
+
 ``` SQL
 SELECT * FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE='PERFORMANCE_SCHEMA'
 ```
