@@ -104,7 +104,3 @@ ALTER TABLE employees ADD INDEX index_first_name(first_name);
 | 1   | SIMPLE      | salaries  | null       | ref  | index_from_date  | index_from_date  | 3       | const | 88     | 100      | null  |
 | 1   | SIMPLE      | titles    | null       | ref  | index_title      | index_title      | 52      | const | 184986 | 100      | null  |
 | 1   | SIMPLE      | employees | null       | ref  | index_first_name | index_first_name | 16      | const | 253    | 100      | null  |
-
-**！注意！**
-
-- データ量やクエリによっては、MySQLが実行計画を作成する際に、**インデックスを使わない方がデータを早く取得できる**と判断して、インデックスが使われないことがあります
