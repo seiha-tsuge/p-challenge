@@ -53,27 +53,57 @@
 
 ## 課題 2
 
-``` SQL
-SELECT * FROM dept_emp WHERE from_date = '1986-06-26';
-```
-
-<img width="754" alt="スクリーンショット 2022-10-04 22 47 04" src="https://user-images.githubusercontent.com/49358142/193836861-6f8b63fe-075b-4a30-ba46-a74ba06de6cc.png">
-
-
-``` SQL
-SELECT * FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE='PERFORMANCE_SCHEMA'
-```
-
-- ここからの課題では、実際にMySQLインスタンスを立ち上げて、色々といじっていきます
 - WHERE句を1つだけ含むSELECTクエリを3つ考えてください
-  - WHERE句を複数含む場合のインデックスについては次の課題で触れるため、**この課題ではWHERE句は1つだけでお願いします**
   - クエリを実行して、取得に要した時間を測定してください
-    - ヒント：SHOW PROFILESという簡単な測定方法がありますが...
-      - 今回のように簡単な実験であれば問題ありませんが、SHOW PROFILESはMySQLからdeprecate予定なので、使用する場合はご注意ください
-    - ヒント：performance_schemaを使うのが良さそうです！
-  - 上記のSELECTクエリを高速化するインデックスを作成してください
-  - インデックスを使って検索した場合どれだけ検索速度に差が出るか、測定してください
-  - EXPLAINを使って、ちゃんとインデックスが使われていることを証明してください
+
+``` SQL
+SELECT * FROM salaries WHERE from_date = '1986-06-26';
+```
+
+``` SQL
+SELECT * FROM titles WHERE title = 'Senior Engineer';
+```
+
+``` SQL
+SELECT * FROM employees WHERE first_name = 'Georgi';
+```
+
+| EVENT_ID | Duration | SQL_TEXT                                               |
+| -------- | -------- | ------------------------------------------------------ |
+| 122      | 0.868718 | SELECT \* FROM salaries WHERE from_date = '1986-06-26' |
+| 178      | 0.651761 | SELECT \* FROM titles WHERE title = 'Senior Engineer'  |
+| 234      | 0.578365 | SELECT \* FROM employees WHERE first_name = 'Georgi'   |
+
+[Query Profiling Using Performance Schema](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-query-profiling.html)
+
+- 上記のSELECTクエリを高速化するインデックスを作成してください
+
+``` SQL
+ALTER TABLE salaries ADD INDEX index_from_date(from_date);
+```
+
+``` SQL
+ALTER TABLE titles ADD INDEX index_title(title);
+```
+
+``` SQL
+ALTER TABLE employees ADD INDEX index_first_name(first_name);
+```
+
+- インデックスを使って検索した場合どれだけ検索速度に差が出るか、測定してください
+- EXPLAINを使って、ちゃんとインデックスが使われていることを証明してください
+
+| EVENT_ID | Duration | SQL_TEXT                                               |
+| -------- | -------- | ------------------------------------------------------ |
+| 162      | 0.000821 | SELECT \* FROM salaries WHERE from_date = '1986-06-26' |
+| 432      | 0.320211 | SELECT \* FROM titles WHERE title = 'Senior Engineer'  |
+| 460      | 0.001398 | SELECT \* FROM employees WHERE first_name = 'Georgi'   |
+
+| id  | select_type | table     | partitions | type | possible_keys    | key              | key_len | ref   | rows   | filtered | Extra |
+| --- | ----------- | --------- | ---------- | ---- | ---------------- | ---------------- | ------- | ----- | ------ | -------- | ----- |
+| 1   | SIMPLE      | salaries  | null       | ref  | index_from_date  | index_from_date  | 3       | const | 88     | 100      | null  |
+| 1   | SIMPLE      | titles    | null       | ref  | index_title      | index_title      | 52      | const | 184986 | 100      | null  |
+| 1   | SIMPLE      | employees | null       | ref  | index_first_name | index_first_name | 16      | const | 253    | 100      | null  |
 
 **！注意！**
 
