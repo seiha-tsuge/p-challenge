@@ -25,3 +25,38 @@ AtomとMoleculeからなる構造体。ヘッダーやフッターなどがこ�
 #### Pages
 
 OrganismとTemplateを使用して作成された、デザインの完成形。
+
+### 関数コンポーネントとクラスコンポーネントの違い
+
+#### レンダリング
+
+関数コンポーネントは、JSXを返すための関数です。一方、クラスコンポーネントはReactコンポーネントを拡張するためのJavaScriptクラスです。クラスコンポーネントは、React要素をレンダリングするために使用されます。
+
+関数 [codesandbox](https://codesandbox.io/s/wandering-fog-x414zj)
+
+クラス [codesandbox](https://codesandbox.io/s/bold-meadow-wx50mv)
+
+#### props
+
+関数コンポーネントは、関数の引数としてpropsを受け取ります。一方、クラスコンポーネントは、this.propsを使用してpropsを受け取ります。
+
+関数 [codesandbox](https://codesandbox.io/s/objective-maria-0ilk45)
+
+クラス [codesandbox](https://codesandbox.io/s/beautiful-hill-2cthcd)
+
+#### state
+
+クラスコンポーネントと関数コンポーネントのstateの違いは、関数コンポーネントが状態を持たない純粋な関数であるのに対して、クラスコンポーネントは状態を持つことができるということです。関数コンポーネントで状態を持ちたい場合は、`useState`を使用することで、状態を持つことができます。
+
+関数 [codesandbox](https://codesandbox.io/s/determined-lederberg-mm00kk)
+
+クラス [codesandbox](https://codesandbox.io/s/tender-easley-lv8ewc)
+
+#### ライフサイクル
+
+関数コンポーネントとクラスコンポーネントのライフサイクルの違いは、関数コンポーネントは単純な関数なので、ライフサイクルメソッドを使用できません。一方、クラスコンポーネントはライフサイクルメソッドを使用できます。ライフサイクルメソッドを使うと、コンポーネントがマウント(`componentDidMount`)されたり、更新(`componentDidUpdate`)、アンマウント(`componentWillUnmount`)されたりするときに、処理を実行できます。
+関数コンポーネントにはライフサイクルメソッドはありませんが、`useEffect`を使用することで、関数コンポーネントにライフサイクルの機能を持たせることができます。`useEffect`を使用すると、関数コンポーネントのマウント、更新、アンマウント時に処理を実行することができます。
+
+[Reactライフサイクルと紐づけて、useEffectのデメリットとその対応策を整理してみた](https://zenn.dev/rinda_1994/articles/6752d2baa7b2d8)
+
+[参考 React:関数コンポーネントとクラスコンポーネントの違い](https://www.twilio.com/blog/react-choose-functional-components-jp)
