@@ -61,3 +61,11 @@ OrganismとTemplateを使用して作成された、デザインの完成形。
 [Reactライフサイクルと紐づけて、useEffectのデメリットとその対応策を整理してみた](https://zenn.dev/rinda_1994/articles/6752d2baa7b2d8)
 
 [参考 React:関数コンポーネントとクラスコンポーネントの違い](https://www.twilio.com/blog/react-choose-functional-components-jp)
+
+## 課題2
+
+### position: absolute
+
+position: absolute;は、ある要素を別の要素の上に重ねる場合に有効です。しかし、position: absolute;を使用するとレイアウトを保持するのが難しくなる可能性があります。特に、レスポンシブデザインでは、サイト全体のレイアウトに合わせて自動的に調整する必要がありますが、position: absolute;を使用すると、スクリーンサイズやデバイスに関係なく、確定した位置に配置されるため、デバイスによっては見づらくなる可能性があります。要素を重ねる必要がなければ、FlexやGridを使用するのが望ましいです。
+
+[モダンCSSによる絶対配置（position: absolute;）の削減](https://coliss.com/articles/build-websites/operation/css/less-absolute-positioning-modern-css.html)
