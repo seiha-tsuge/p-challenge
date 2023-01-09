@@ -66,6 +66,12 @@ OrganismとTemplateを使用して作成された、デザインの完成形。
 
 ### position: absolute
 
-position: absolute;は、ある要素を別の要素の上に重ねる場合に有効です。しかし、position: absolute;を使用するとレイアウトを保持するのが難しくなる可能性があります。特に、レスポンシブデザインでは、サイト全体のレイアウトに合わせて自動的に調整する必要がありますが、position: absolute;を使用すると、スクリーンサイズやデバイスに関係なく、確定した位置に配置されるため、デバイスによっては見づらくなる可能性があります。要素を重ねる必要がなければ、FlexやGridを使用するのが望ましいです。
+position: absolute;は、ある要素を別の要素の上に重ねる場合に有効です。しかし、position: absolute;を使用するとレイアウトを保持するのが難しくなる可能性があります。特に、レスポンシブデザインでは、サイト全体のレイアウトに合わせて自動的に調整する必要があります。しかし、position: absolute;を使用すると、スクリーンサイズやデバイスに関係なく、確定した位置に配置されるため、デバイスによっては見づらくなる可能性があります。要素を重ねる必要がなければ、FlexやGridを使用するのが望ましいです。
 
 [モダンCSSによる絶対配置（position: absolute;）の削減](https://coliss.com/articles/build-websites/operation/css/less-absolute-positioning-modern-css.html)
+
+## 課題3
+
+### atomic design 問題点
+
+### ディレクトリ構造
