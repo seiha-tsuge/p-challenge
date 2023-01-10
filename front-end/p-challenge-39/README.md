@@ -81,3 +81,51 @@ position: absolute;は、ある要素を別の要素の上に重ねる場合に�
 [【Atomic Designに懐疑的なあなたへ】改めて考えたい React / Next.js のデザインパターン](https://zenn.dev/mutex_inc/articles/beca85dd7fdcae)
 
 ### ディレクトリ構造
+
+```sh
+src
+|
++-- components
+|
++-- pages
+|
++-- features
+```
+
+#### src/components
+
+アプリケーション全体で共有されるコンポーネントを格納する。
+
+```sh
+src/components
+|
++-- elements
+|
++-- layouts
+```
+
+**elements**
+アプリケーション全体で共有される、ボタンやフォームなどのUIコンポーネントを格納する。
+
+**layouts**
+アプリケーション全体で共有される、レイアウトコンポーネントを格納する。
+
+#### src/features
+
+featuresフォルダには、その機能に特化したコードが格納されます。機能ごとにフォルダができます。
+
+```sh
+src/features/awesome-feature
+|
++-- components
+```
+
+#### src/pages
+
+デザインの完成形であるページコンポーネントを格納する。
+
+[Bulletproof React](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
+
+[Next.jsディレクトリ構成・設計再考（featuresが何を解決するか）](https://zenn.dev/yodaka/articles/eca2d4bf552aeb)
+
+[【Atomic Designに懐疑的なあなたへ】改めて考えたい React / Next.js のデザインパターン](https://zenn.dev/mutex_inc/articles/beca85dd7fdcae)
