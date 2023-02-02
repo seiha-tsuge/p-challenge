@@ -10,4 +10,4 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Primary: Story = {};
+export const Default: Story = {};

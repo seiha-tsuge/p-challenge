@@ -1,5 +1,5 @@
+import '@/styles/variables.css';
 import '@/styles/globals.css';
-import 'ress';
 
 import type { AppProps } from 'next/app';
 

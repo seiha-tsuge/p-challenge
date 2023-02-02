@@ -1,0 +1,129 @@
+.root {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: var(--primary);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  min-height: 74px;
+}
+
+.container {
+  max-width: 1920px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navMenuWrapper {
+  display: flex;
+  flex: 1 1;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer;
+  border-radius: 9999px;
+  border-width: 1px;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transition-duration: 0.1s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transform: scale(1.05);
+}
+
+.navMenu {
+  display: block;
+  margin-left: 1.5rem;
+}
+
+.link {
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  line-height: 1.5rem;
+  color: var(--accent-5);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 75ms;
+}
+
+.link:hover {
+  color: var(--accent-9);
+}
+
+.link:focus {
+  color: var(--accent-8);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.searchInputWrapper {
+  display: flex;
+  flex: 1 1;
+  justify-content: center;
+}
+
+.userNavWrapper {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.userNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.userNavList {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-items: end;
+}
+
+.userNavItem {
+  @apply ml-6 cursor-pointer relative transition ease-in-out
+  duration-100 flex items-center outline-none text-primary;
+}
+
+.userNavItem:hover {
+  @apply text-accent-6 transition scale-110 duration-100;
+}
+
+.userNavItem:first-child {
+  @apply ml-0;
+}
+
+.userNavItem:focus,
+.userNavItem:active {
+  @apply outline-none;
+}
+
+.avatarButton {
+  @apply inline-flex justify-center rounded-full;
+}
+
+.avatarButton:focus {
+  @apply outline-none;
+}

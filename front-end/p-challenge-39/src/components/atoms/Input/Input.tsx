@@ -9,8 +9,8 @@ interface InputProps {
 export const Input = ({ rightIcon }: InputProps) => {
   return (
     <div className={styles.input_wrapper}>
-      <input id='search' placeholder='Search for products...' value='' className={styles.input} />
-      {rightIcon && <div>{rightIcon}</div>}
+      <input id='search' placeholder='Search for products...' defaultValue='' className={styles.input} />
+      {rightIcon && <div className={styles.iconContainer}>{rightIcon}</div>}
     </div>
   );
 };
