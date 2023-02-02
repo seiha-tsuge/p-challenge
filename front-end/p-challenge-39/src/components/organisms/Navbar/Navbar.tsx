@@ -15,7 +15,7 @@ interface Link {
 }
 
 interface NavbarProps {
-  links?: Link[];
+  links: Link[];
 }
 
 export const Navbar = ({ links }: NavbarProps) => {

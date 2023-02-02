@@ -5,6 +5,11 @@ import { Navbar } from '@/components/organisms/Navbar';
 import styles from './IndexTemplate.module.css';
 
 export const IndexTemplate = () => {
+  const links = [
+    { href: `/search/clothes`, label: `New Arrivals` },
+    { href: `/search/featured`, label: `Featured` },
+  ];
+
   return (
     <>
       <Head>
@@ -15,7 +20,7 @@ export const IndexTemplate = () => {
       </Head>
       <main>
         <div className={styles.root}>
-          <Navbar />
+          <Navbar links={links} />
         </div>
         <h1 className='text-3xl font-bold underline'>Hello world!</h1>
       </main>
