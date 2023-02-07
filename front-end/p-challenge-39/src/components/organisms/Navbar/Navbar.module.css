@@ -31,6 +31,12 @@
   align-items: center;
 }
 
+.navMenu {
+  display: flex;
+  margin-left: 1.5rem;
+  gap: 1rem;
+}
+
 .logo {
   cursor: pointer;
   border-radius: 9999px;
@@ -44,11 +50,6 @@
 .logo:hover {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transform: scale(1.05);
-}
-
-.navMenu {
-  display: block;
-  margin-left: 1.5rem;
 }
 
 .link {
