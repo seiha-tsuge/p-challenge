@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import { Navbar } from '@/components/organisms/Navbar';
+import { ProductCards } from '@/components/organisms/ProductCards';
 
 import styles from './IndexTemplate.module.css';
 
@@ -8,6 +9,24 @@ export const IndexTemplate = () => {
   const links = [
     { href: `/search/clothes`, label: `New Arrivals` },
     { href: `/search/featured`, label: `Featured` },
+  ];
+
+  const products = [
+    {
+      name: `ACME Cup`,
+      price: 25.0,
+      image: { src: `/assets/Cup-front-black.webp`, alt: `New Arrivals` },
+    },
+    {
+      name: `Short Sleeve T-Shirt`,
+      price: 35.0,
+      image: { src: `/assets/short-sleeve-0.webp`, alt: `Featured` },
+    },
+    {
+      name: `New Short Sleeve T-Shirt`,
+      price: 25.0,
+      image: { src: `/assets/short-sleeve-t-shirt-0.webp`, alt: `Featured` },
+    },
   ];
 
   return (
@@ -18,12 +37,14 @@ export const IndexTemplate = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <div className={styles.root}>
-          <Navbar links={links} />
-        </div>
-        <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-      </main>
+
+      <div className={styles.root}>
+        <Navbar links={links} />
+        <main className={styles.main}>
+          <ProductCards products={products} layout='A' />
+          <ProductCards products={products} layout='B' />
+        </main>
+      </div>
     </>
   );
 };
