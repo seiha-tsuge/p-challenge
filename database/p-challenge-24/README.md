@@ -11,13 +11,13 @@
 
 ## 課題 2
 
-交差テーブル
+交差テーブル  
 https://dbdiagram.io/d/6419548c296d97641d897ed1
 
-共通の親テーブル
+共通の親テーブル  
 https://dbdiagram.io/d/64196af0296d97641d898621
 
-[多対一リレーションの設計手法によるパフォーマンスの違いを確認した](https://tech.mobilefactory.jp/entry/2020/12/15/150000)
+[多対一リレーションの設計手法によるパフォーマンスの違いを確認した](https://tech.mobilefactory.jp/entry/2020/12/15/150000)  
 [Polymorphic Associations](https://docs.gitlab.com/ee/development/database/polymorphic_associations.html)  
 [SQLアンチパターン勉強会　第6回：ポリモーフィック関連](https://qiita.com/dai329/items/1db8fbe37f43a465d801)  
 [SQLアンチパターンを読んで （ポリモーフィック関連について）](https://blog.motimotilab.com/sql-anti-pattern-polymorphic-association/)
