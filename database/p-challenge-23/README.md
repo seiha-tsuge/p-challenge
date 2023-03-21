@@ -6,28 +6,10 @@
 - タグの重複が発生する
 - タグの検索が複雑になる
 - タグの追加・削除がしにくい
-- タグ の一意性を保証できない
+- タグの一意性を保証できない
 
-```mermaid
-erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER {
-        string name
-        string custNumber
-        string sector
-    }
+## 課題 2
 
-    ORDER ||--|{ LINE-ITEM : contains
-    ORDER {
-        int orderNumber
-        string deliveryAddress
-    }
+https://dbdiagram.io/d/64197901296d97641d898acf
 
-    LINE-ITEM {
-        string productCode
-        int quantity
-        float pricePerUnit
-    }
-```
-
-https://catpot.dev/db-multi-column-attribute/
+[SQLアンチパターン：マルチカラムアトリビュートを読んだのでメモ](https://catpot.dev/db-multi-column-attribute/)
