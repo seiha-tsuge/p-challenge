@@ -48,7 +48,7 @@ SELECT * FROM Issue WHERE assigned_to_id AND FALSE;
 SELECT * FROM Issue WHERE assigned_to_id OR TRUE;
 ```
 
-全てのレコードが見つかるする。
+全てのレコードが見つかる。
 
 ### 問題 7
 
