@@ -5,58 +5,58 @@
 ### 問題 1
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id = 0;
+SELECT NULL = 0;
 ```
 
-assigned_to_idがNullではないレコードが見つかる。
+(null)
 
 ### 問題 2
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id = NULL;
+SELECT NULL = NULL;
 ```
 
-何も見つからない。
+(null)
 
 ### 問題 3
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id <> NULL;
+SELECT NULL <> NULL;
 ```
 
-何も見つからない。
+(null)
 
 ### 問題 4
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id AND TRUE;
+SELECT NULL AND TRUE;
 ```
 
-何も見つからない。
+(null)
 
 ### 問題 5
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id AND FALSE;
+SELECT NULL AND FALSE;
 ```
 
-何も見つからない。
+0
 
 ### 問題 6
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id OR TRUE;
+SELECT NULL OR TRUE;
 ```
 
-全てのレコードが見つかる。
+1
 
 ### 問題 7
 
 ``` SQL
-SELECT * FROM Issue WHERE assigned_to_id IS NULL;
+SELECT NULL IS NULL;
 ```
 
-assigned_to_idがNULLのレコードが見つかる。
+1
 
 ## 課題 2
 
