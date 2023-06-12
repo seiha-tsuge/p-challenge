@@ -31,3 +31,27 @@
     - 上記のSELECTクエリを高速化する複合インデックスを作成してください
     - 複合インデックスを使って検索した場合、どれだけ検索速度に差が出るか、測定してください
     - EXPLAINを使って、ちゃんと複合インデックスが使われていることを証明してください
+
+``` SQL
+SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
+```
+
+32.91 ms
+    
+``` SQL
+CREATE INDEX index_first_name_last_name ON employees(first_name, last_name);
+```
+
+``` SQL
+SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
+```
+
+2.3 ms
+
+``` SQL
+EXPLAIN SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
+```
+
+| id  | select_type | table     | partitions | type | possible_keys              | key                        | key_len | ref         | rows | filtered | Extra |
+| --- | ----------- | --------- | ---------- | ---- | -------------------------- | -------------------------- | ------- | ----------- | ---- | -------- | ----- |
+| 1   | SIMPLE      | employees | null       | ref  | index_first_name_last_name | index_first_name_last_name | 34      | const,const | 2    | 100      | null  |
