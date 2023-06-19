@@ -32,11 +32,13 @@
     - 複合インデックスを使って検索した場合、どれだけ検索速度に差が出るか、測定してください
     - EXPLAINを使って、ちゃんと複合インデックスが使われていることを証明してください
 
+#### 1
+
 ``` SQL
 SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
 ```
 
-32.91 ms
+32 ms
     
 ``` SQL
 CREATE INDEX index_first_name_last_name ON employees(first_name, last_name);
@@ -46,7 +48,7 @@ CREATE INDEX index_first_name_last_name ON employees(first_name, last_name);
 SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
 ```
 
-2.3 ms
+2 ms
 
 ``` SQL
 EXPLAIN SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Facello";
@@ -55,3 +57,55 @@ EXPLAIN SELECT * FROM employees WHERE first_name = "Georgi" AND last_name = "Fac
 | id  | select_type | table     | partitions | type | possible_keys              | key                        | key_len | ref         | rows | filtered | Extra |
 | --- | ----------- | --------- | ---------- | ---- | -------------------------- | -------------------------- | ------- | ----------- | ---- | -------- | ----- |
 | 1   | SIMPLE      | employees | null       | ref  | index_first_name_last_name | index_first_name_last_name | 34      | const,const | 2    | 100      | null  |
+
+#### 2
+
+``` SQL
+SELECT * FROM employees WHERE `employees`.`birth_date` = "1953-09-02" AND `employees`.`hire_date` = "1986-06-26";
+```
+
+34 ms
+
+``` SQL
+CREATE INDEX index_birth_date_hire_date ON employees(birth_date, hire_date);
+```
+
+``` SQL
+SELECT * FROM employees WHERE `employees`.`birth_date` = "1953-09-02" AND `employees`.`hire_date` = "1986-06-26";
+```
+
+9 ms
+
+``` SQL
+EXPLAIN SELECT * FROM employees WHERE `employees`.`birth_date` = "1953-09-02" AND `employees`.`hire_date` = "1986-06-26";
+```
+
+| id  | select_type | table     | partitions | type | possible_keys              | key                        | key_len | ref         | rows | filtered | Extra |
+| --- | ----------- | --------- | ---------- | ---- | -------------------------- | -------------------------- | ------- | ----------- | ---- | -------- | ----- |
+| 1   | SIMPLE      | employees | null       | ref  | index_birth_date_hire_date | index_birth_date_hire_date | 6       | const,const | 1    | 100      | null  |
+
+#### 3
+
+``` SQL
+SELECT * FROM employees WHERE `employees`.`first_name` = "Saniya" AND `employees`.`birth_date` = "1958-02-19";
+```
+
+4 ms
+
+``` SQL
+CREATE INDEX index_first_name_birth_date ON employees(first_name, birth_date);
+```
+
+``` SQL
+SELECT * FROM employees WHERE `employees`.`first_name` = "Saniya" AND `employees`.`birth_date` = "1958-02-19";
+```
+
+10 ms
+
+``` SQL
+EXPLAIN SELECT * FROM employees WHERE `employees`.`first_name` = "Saniya" AND `employees`.`birth_date` = "1958-02-19";
+```
+
+| id  | select_type | table     | partitions | type | possible_keys              | key                        | key_len | ref         | rows | filtered | Extra |
+| --- | ----------- | --------- | ---------- | ---- | -------------------------- | -------------------------- | ------- | ----------- | ---- | -------- | ----- |
+| 1   | SIMPLE      | employees | null       | ref  | index_first_name_last_name,index_birth_date_hire_date,index_first_name_birth_date | index_first_name_birth_date | 19       | const,const | 1    | 100      | null  |
