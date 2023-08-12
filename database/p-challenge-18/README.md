@@ -108,7 +108,7 @@ HAVING avg_salary_per_dept > (
 ### 最も頻度高くスロークエリに現れるクエリの特定
 
 ``` bash
-mysqldumpslow -s c -t 1 /var/lib/mysql/aa4eeda1dfac-slow.log
+mysqldumpslow -s c -t 10 /var/lib/mysql/aa4eeda1dfac-slow.log
 ```
 - -s c: クエリのカウント順にソート
 - -t 1: 上位1件のみ表示
@@ -125,3 +125,20 @@ mysqldumpslow -s t -t 1 /var/lib/mysql/aa4eeda1dfac-slow.log
 ``` bash
 mysqldumpslow -s l -t 1 /var/lib/mysql/aa4eeda1dfac-slow.log
 ```
+
+## 課題 3
+
+## 課題 4
+
+### LIMIT 1って書いたのに、なぜ遅いクエリがあるんですか？
+
+LIMIT 1は、返す結果を1行に限定するだけで、クエリが実行される過程で全行を走査する必要がある場合は、時間がかかることがある。
+
+### JOIN WHEREで絞るのとJOIN ONで絞るのって、何が違うんですか？
+
+- INNER JOINにおけるON句とWHERE句は、結果を絞り込む点では同じ結果になる。しかし、その絞り込みのタイミングが異なる。
+  - ON句：結合する前に条件を適用して行を絞り込む。これにより、結合の対象となるレコードの数が減少し、計算量が削減される可能性がある。
+  - WHERE句：すべての結合が完了した後で条件を適用して絞り込む。結合時に多くのレコードを処理する必要が出てくる。
+- LEFT OUTER JOINでは、ON句とWHERE句の位置によって結果が異なる。
+  - ON句：結合しない行も結果に含まれる。
+  - WHERE句：結合しない行は条件にマッチしないため、結果から除外される。
