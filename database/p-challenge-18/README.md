@@ -11,7 +11,7 @@ SHOW variables LIKE 'slow_query%';
 | Variable_name       | Value                                    |
 | ------------------- | ---------------------------------------- |
 | slow_query_log      | OFF                                      |
-| slow_query_log_file | /var/lib/mysql/aa4eeda1dfac-slow.log     |
+| slow_query_log_file | /var/lib/mysql/98e34419cbdd-slow.log     |
 
 ``` SQL
 SET GLOBAL slow_query_log = 'ON';
@@ -24,7 +24,7 @@ SHOW variables LIKE 'slow_query%';
 | Variable_name       | Value                                    |
 | ------------------- | ---------------------------------------- |
 | slow_query_log      | ON                                       |
-| slow_query_log_file | /var/lib/mysql/aa4eeda1dfac-slow.log     |
+| slow_query_log_file | /var/lib/mysql/98e34419cbdd-slow.log     |
 
 ### 課題 1-2
 
@@ -108,7 +108,7 @@ HAVING avg_salary_per_dept > (
 ### 最も頻度高くスロークエリに現れるクエリの特定
 
 ``` bash
-mysqldumpslow -s c -t 10 /var/lib/mysql/aa4eeda1dfac-slow.log
+mysqldumpslow -s c -t 1 /var/lib/mysql/98e34419cbdd-slow.log
 ```
 - -s c: クエリのカウント順にソート
 - -t 1: 上位1件のみ表示
@@ -116,17 +116,55 @@ mysqldumpslow -s c -t 10 /var/lib/mysql/aa4eeda1dfac-slow.log
 ### 実行時間が最も長いクエリ
 
 ``` bash
-mysqldumpslow -s t -t 1 /var/lib/mysql/aa4eeda1dfac-slow.log
+mysqldumpslow -s t -t 1 /var/lib/mysql/98e34419cbdd-slow.log
 ```
 - -s t: クエリの実行時間順にソート
 
 ### ロック時間が最も長いクエリの特定
 
 ``` bash
-mysqldumpslow -s l -t 1 /var/lib/mysql/aa4eeda1dfac-slow.log
+mysqldumpslow -s l -t 1 /var/lib/mysql/98e34419cbdd-slow.log
 ```
 
+- -s l: クエリの合計ロック時間順にソート
+
 ## 課題 3
+
+### 課題 3-1
+
+``` SQL
+SELECT e.emp_no, e.first_name, e.last_name, e.hire_date, s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE DATEDIFF(CURRENT_DATE, e.hire_date) > 3650
+AND s.salary > (
+    SELECT AVG(salary) FROM salaries
+)
+AND s.to_date = '9999-01-01';
+```
+
+``` SQL
+CREATE INDEX idx_salary_salaries ON salaries(salary);
+CREATE INDEX idx_to_date_salaries ON salaries(to_date);
+```
+
+### 課題 3-2
+
+``` SQL
+SELECT d.dept_no, d.dept_name, AVG(s.salary) as avg_salary_per_dept
+FROM departments d
+JOIN dept_emp de ON d.dept_no = de.dept_no
+JOIN salaries s ON de.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+GROUP BY d.dept_no, d.dept_name
+HAVING avg_salary_per_dept > (
+    SELECT AVG(salary) FROM salaries WHERE to_date = '9999-01-01'
+);
+```
+
+``` SQL
+CREATE INDEX idx_to_date_salaries ON salaries(to_date);
+```
 
 ## 課題 4
 
