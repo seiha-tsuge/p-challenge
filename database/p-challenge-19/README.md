@@ -10,6 +10,8 @@ SELECT NULL = 0;
 
 (null)
 
+NULLと他の値との比較は常にNULL
+
 ### 問題 2
 
 ``` SQL
@@ -18,6 +20,10 @@ SELECT NULL = NULL;
 
 (null)
 
+NULLとNULLとの比較もNULL
+
+NULLの値が未知であるため、2つのNULL値が等しいかどうかは未知
+
 ### 問題 3
 
 ``` SQL
@@ -25,6 +31,8 @@ SELECT NULL <> NULL;
 ```
 
 (null)
+
+同上の理由から、NULLとNULLの不等価比較もNULL
 
 ### 問題 4
 
@@ -60,8 +68,6 @@ SELECT NULL IS NULL;
 
 ## 課題 2
 
-## 課題 3
+中間テーブルを使用する
 
-## 課題 4
-
-
+https://dbdiagram.io/d/64d8a0a802bd1c4a5eb15f88
