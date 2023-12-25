@@ -148,10 +148,9 @@ InnoDB のギャップロックの共有性: InnoDBでは、ギャップロッ�
 [データベースのロックの基礎からデッドロックまで](https://zenn.dev/gibjapan/articles/1d8dfb7520dabc)  
 [共有ロック、占有ロック、そしてデッドロックの仕組みを学ぼう！](https://itmanabi.com/exclusive-lock/)
 
-#### select....for update
-    - select....for updateは共有ロックでしょうか排他ロックでしょうか？
+#### 問題 7
 
-    SELECT ... FOR UPDATE は、SQLで使用されるコマンドで、排他ロック（exclusive lock）を行います。
+SELECT ... FOR UPDATE は、排他ロック
 
 ### 問題 7
 
