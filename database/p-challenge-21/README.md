@@ -198,13 +198,78 @@ SELECT ... FOR UPDATE は、排他ロック
 
 ## 課題 2
 
-- 以下の状況を再現するようなクエリを発行してください
-    - Dirty Read
-    - Non-repeatable read
-    - Phantom read
-- クエリを作成したら、トリオの方と見せ合って比較してみましょう
+### 問題 1
 
-ヒント：上記の状況を再現するためには複数のクライアントから同時にMySQLに接続する必要があります
+トランザクションA
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+START TRANSACTION;
+UPDATE salaries SET salary = 60000 WHERE emp_no = 10001 AND from_date = "1986-06-26";
+-- コミットせずに待機
+```
+
+トランザクションB
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+START TRANSACTION;
+SELECT * FROM salaries WHERE emp_no = 10001 AND from_date = "1986-06-26";
+COMMIT;
+```
+
+トランザクションBは、トランザクションAによってまだコミットされていない変更を読み取ります。
+
+### 問題 2
+
+トランザクションA
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+START TRANSACTION;
+SELECT * FROM salaries WHERE emp_no = 10001 AND from_date = "1986-06-26";
+-- ここで待機し、トランザクションBを実行する
+SELECT * FROM salaries WHERE emp_no = 10001 AND from_date = "1986-06-26";
+COMMIT;
+```
+
+トランザクションB
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+START TRANSACTION;
+UPDATE salaries SET salary = 61000 WHERE emp_no = 10001 AND from_date = "1986-06-26";
+COMMIT;
+```
+
+トランザクションAは、同じクエリで異なる結果を2回読み取ります。
+
+### 問題 3
+
+トランザクションA
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+START TRANSACTION;
+SELECT * FROM employees WHERE emp_no >= 499999;
+-- ここで待機し、トランザクションBを実行する
+SELECT * FROM employees WHERE emp_no >= 499999;
+COMMIT;
+```
+
+トランザクションB
+
+``` SQL
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+START TRANSACTION;
+INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) VALUES (500000, '1993-05-24', 'Seiha', 'Tsuge', 'M', '2023-12-26');
+SELECT * FROM employees WHERE emp_no >= 499999;
+COMMIT;
+```
+
+トランザクションAの2回目のクエリは、トランザクションBによって追加された新しいレコードを含む異なる結果セットを返します。
+
+### 問題 4
 
 - 映画のチケットを販売するシステムを開発しているとします。映画の予約は（前時代的ですが）映画館に設置されている10台程度の端末でしか行われないため、よほど運が悪くない限り多重予約が発生することはありません
     - このような状況では楽観ロックを利用するでしょうか？それとも悲観ロックを利用するでしょうか？
