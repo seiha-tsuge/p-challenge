@@ -148,7 +148,7 @@ InnoDB のギャップロックの共有性: InnoDBでは、ギャップロッ�
 [データベースのロックの基礎からデッドロックまで](https://zenn.dev/gibjapan/articles/1d8dfb7520dabc)  
 [共有ロック、占有ロック、そしてデッドロックの仕組みを学ぼう！](https://itmanabi.com/exclusive-lock/)
 
-#### 問題 7
+#### 問題 6-2
 
 SELECT ... FOR UPDATE は、排他ロック
 
