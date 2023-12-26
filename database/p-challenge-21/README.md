@@ -277,25 +277,32 @@ COMMIT;
 
 ``` mermaid
 sequenceDiagram
-    participant U as User
-    participant S as System
-    participant DB as Database
+    actor User
 
-    U->>S: Request available tickets
-    S->>DB: Fetch ticket data
-    DB-->>S: Ticket data with version
-    S-->>U: Display tickets
+    participant Terminal as 映画予約端末
+    participant Database as データベース
+    participant PaymentAPI as 決済API
 
-    U->>S: Select and attempt to book ticket
-    S->>DB: Check version and book if no conflict
-    alt No Conflict
-        DB-->>S: Update successful
-        S-->>U: Booking confirmation
-    else Conflict Detected
-        DB-->>S: Update failed
-        S-->>U: Conflict message, prompt retry
+    User->>Terminal: 映画席の予約を要求
+    Terminal->>Database: 席情報とバージョンを取得
+    Database-->>Terminal: 席情報とバージョン
+    alt 席が既に購入されている場合
+        Terminal-->>User: エラー: 席は既に購入されています
+    else 席がまだ購入されていない場合
+        Terminal->>PaymentAPI: 決済を行う
+        PaymentAPI-->>Terminal: 決済完了
+        Terminal->>Database: 席情報とバージョンを更新して保存
+        alt バージョンが一致しない場合
+            Database-->>Terminal: エラー: 予約競合発生
+            Terminal-->>User: エラー: 予約に失敗しました
+        else バージョンが一致する場合
+            Database-->>Terminal: 席情報の更新と保存成功
+            Terminal-->>User: 予約完了
+        end
     end
 ```
+
+[RESTful APIにおける楽観ロック](https://restful-api-guidelines-ja.netlify.app/#optimistic-locking)
 
 - 映画のチケットを販売するシステムを開発しているとします。映画の予約は（前時代的ですが）映画館に設置されている10台程度の端末でしか行われないため、よほど運が悪くない限り多重予約が発生することはありません
     - このような状況では楽観ロックを利用するでしょうか？それとも悲観ロックを利用するでしょうか？
