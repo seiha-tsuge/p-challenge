@@ -283,25 +283,27 @@ sequenceDiagram
     participant Database as データベース
     participant PaymentAPI as 決済API
 
-    User->>Terminal: 映画席の予約を要求
+    User->>Terminal: 席の予約を要求
     Terminal->>Database: 席情報とバージョンを取得
     Database-->>Terminal: 席情報とバージョン
     alt 席が既に購入されている場合
         Terminal-->>User: エラー: 席は既に購入されています
     else 席がまだ購入されていない場合
-        Terminal->>PaymentAPI: 決済を行う
-        PaymentAPI-->>Terminal: 決済完了
-        Terminal->>Database: 席情報とバージョンを更新して保存
+        Terminal->>Database: バージョンチェック
+        Database-->>Terminal: バージョンチェック結果
         alt バージョンが一致しない場合
-            Database-->>Terminal: エラー: 予約競合発生
-            Terminal-->>User: エラー: 予約に失敗しました
+            Terminal-->>User: エラー: 予約競合発生
         else バージョンが一致する場合
+            Terminal->>PaymentAPI: 決済を行う
+            PaymentAPI-->>Terminal: 決済完了
+            Terminal->>Database: 席情報とバージョンを更新して保存
             Database-->>Terminal: 席情報の更新と保存成功
             Terminal-->>User: 予約完了
         end
     end
 ```
 
+[アプリケーション開発において重要なロックを掘り下げ、ORM における楽観的ロックの実現例を紹介する](https://qiita.com/tatsurou313/items/053cffdfe940a89d7f5a)
 [RESTful APIにおける楽観ロック](https://restful-api-guidelines-ja.netlify.app/#optimistic-locking)
 
 - 映画のチケットを販売するシステムを開発しているとします。映画の予約は（前時代的ですが）映画館に設置されている10台程度の端末でしか行われないため、よほど運が悪くない限り多重予約が発生することはありません
