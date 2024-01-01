@@ -1,0 +1,12 @@
+.formSection {
+  margin-top: 2em;
+}
+
+.hr {
+  height: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+  box-sizing: content-box;
+}

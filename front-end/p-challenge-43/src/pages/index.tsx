@@ -1,8 +1,11 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { MainContainer } from "@/components/MainContainer";
+import { Title } from "@/components/Title";
+import { TodoList } from "@/components/TodoList";
+import { FormSection } from "@/components/FormSection";
+
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -13,38 +16,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <MainContainer>
         <div className={styles.mainSection}>
-          <h1 className={styles.title}>To do:</h1>
-          <ul className="todo-list">
-            <li className="todo-item">
-              <span className="todo-text">s</span>
-              <div className="todo-buttons">
-                <button className="button-complete">✓</button>
-                <button className="button-delete">Ｘ</button>
-              </div>
-            </li>
-          </ul>
-          <div className="form-section">
-            <hr />
-            <div className="form-container">
-              <form className="add-task-form">
-                <div className="form-group">
-                  <label className="task-label">Task</label>
-                  <div className="input-container">
-                    <input className="task-input" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <div className="input-container">
-                    <input className="extra-input" />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <Title>To do:</Title>
+          <TodoList
+            items={[
+              { text: "Buy milk" },
+              { text: "Buy eggs" },
+              { text: "Buy bread" },
+            ]}
+          />
+          <FormSection />
         </div>
-      </main>
+      </MainContainer>
     </>
   );
 }

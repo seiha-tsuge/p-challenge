@@ -1,0 +1,22 @@
+.button {
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btnDanger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btnDanger:hover {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
