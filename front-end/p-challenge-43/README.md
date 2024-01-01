@@ -29,13 +29,7 @@
 
 ### 問題 1
 
-- 以下の todo アプリを開いてください
-- https://codepen.io/philmayfield/full/MwRgyN
-- 上記アプリをリファクタリングしてください
-  - 上記アプリのコードを読み解いていくと、「data」と呼ばれる変数に todo リストの情報が格納されているようです
-  - フックを使って data を管理するようにリファクタリングしてみましょう！
-    - ヒント：useData といった名前のカスタムフックを作成して、その中で useState を使い data を管理してみましょう
-    - ヒント：useData は「data（todo リストの情報）」や、「addData（todo を追加する関数）」「removeData（todo を削除する関数）」などを公開すると良いかもしれません
+src/hooks/useData.ts
 
 ### 問題 2
 
