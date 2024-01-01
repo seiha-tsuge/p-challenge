@@ -1,4 +1,5 @@
 import React from "react";
+import type { FormEvent } from "react";
 
 import { TaskInput } from "./TaskInput";
 import { SaveButton } from "./SaveButton";
@@ -10,7 +11,7 @@ interface FormSectionProps {
 }
 
 export const FormSection = ({ addData }: FormSectionProps) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newTask = e.currentTarget.task.value;
     addData(newTask);
