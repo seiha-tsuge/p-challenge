@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import Head from "next/head";
 
 import { MainContainer } from "@/components/MainContainer";
@@ -5,9 +7,17 @@ import { Title } from "@/components/Title";
 import { TodoList } from "@/components/TodoList";
 import { FormSection } from "@/components/FormSection";
 
+import { useData } from "@/hooks/useData";
+
 import styles from "@/styles/Home.module.css";
 
 export default function Home() {
+  const { data, addData, removeData, toggleComplete } = useData([
+    { id: "00001", task: "Wake up", complete: false },
+    { id: "00002", task: "Eat breakfast", complete: false },
+    { id: "00003", task: "Go to work", complete: false },
+  ]);
+
   return (
     <>
       <Head>
@@ -20,13 +30,11 @@ export default function Home() {
         <div className={styles.mainSection}>
           <Title>To do:</Title>
           <TodoList
-            items={[
-              { text: "Buy milk" },
-              { text: "Buy eggs" },
-              { text: "Buy bread" },
-            ]}
+            data={data}
+            removeData={removeData}
+            toggleComplete={toggleComplete}
           />
-          <FormSection />
+          <FormSection addData={addData} />
         </div>
       </MainContainer>
     </>
