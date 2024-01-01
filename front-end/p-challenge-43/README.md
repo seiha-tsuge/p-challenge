@@ -33,8 +33,8 @@ src/hooks/useData.ts
 
 ### 問題 2
 
-- 今回の課題では todo の追加と削除はあっても「更新」がなかったのでさほど問題にはならなかったのですが、もし data から一部の todo のプロパティのみ更新したいケースが生じた時は、意外と実装が手間です。
-  - そんな状況を解決してくれるのが[Immer](https://immerjs.github.io/immer/)です。こちらのライブラリが開発された[背景](https://medium.com/hackernoon/introducing-immer-immutability-the-easy-way-9d73d8f71cb3)を学び、どのような有用性があるのか話し合ってみましょう
+[【React】ミュータブル、イミュータブルをざっくり理解](https://zenn.dev/recode/articles/abc15ff64aa0ef)  
+[イミュータブルが大事な理由、そして Immer で簡単実現！](https://zenn.dev/luvmini511/articles/85e8e3c71a2f41)
 
 ## 課題 3
 
