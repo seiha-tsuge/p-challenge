@@ -12,7 +12,9 @@ export const FormSection = () => {
       <form>
         <div className="form-container">
           <TaskInput />
-          <SaveButton />
+          <div className={styles.buttonContainer}>
+            <SaveButton />
+          </div>
         </div>
       </form>
     </div>

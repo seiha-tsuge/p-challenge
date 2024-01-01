@@ -10,3 +10,8 @@
   border-top: 1px solid #eee;
   box-sizing: content-box;
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
