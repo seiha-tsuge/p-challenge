@@ -10,11 +10,11 @@ export const FormSection = () => {
     <div className={styles.formSection}>
       <hr className={styles.hr} />
       <form>
-        <div className="form-container">
+        <div className={styles.formGroup}>
           <TaskInput />
-          <div className={styles.buttonContainer}>
-            <SaveButton />
-          </div>
+        </div>
+        <div className={styles.buttonContainer}>
+          <SaveButton />
         </div>
       </form>
     </div>
