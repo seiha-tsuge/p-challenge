@@ -30,21 +30,24 @@
 
 ### 問題1
 
-- [こちらのプロジェクト](https://codesandbox.io/s/use-effect-demo-yw3e5?file=/src/App.js)をcodesandbox上でforkして、SomeComponent（**自身がレンダリングされた回数を表示するコ**ンポーネント）を完成させてください
-    - ヒント：コンポーネントの中にcountなどのカウンターを持ち、useEffectでレンダリングの度にカウンターを加算すると良いでしょう
-    - ヒント：カウンターをuseStateで作成してレンダリングの度にuseEffectから更新するようにすると、**無限ループになってしまうでしょう。**なぜでしょうか？解決するには「useRef」が役立つかもしれません！
+https://codesandbox.io/p/sandbox/p-challenge-44-2-1-mzskc2
 
 ### 問題2
 
-- 上記のコンポーネントを更に改善して「**someFlagがtrueになった時だけ加算する**」ようにしてみましょう
-    - ボタンを押しても2回に1回しか加算されなくなったら成功です
+- デフォルトでは、エフェクトはすべてのレンダリング後に実行されます。
+- エフェクトの実行がstateの更新を引き起こし、再レンダリングが発生します。
+- の再レンダリングにより、エフェクトが再度実行され、stateが更新され、これが繰り返されることになります。
+- この結果、無限ループが発生します
+
+- React は、useRef フックを使用する際に、常に同一のオブジェクトを返すことを保証します。
+- このオブジェクトは変更されないため、エフェクトの再実行を誘発することはありません。
+
+### 問題3
+
+https://codesandbox.io/p/sandbox/p-challenge-44-2-3-5mkdsk
 
 ## 課題3
 
-- 先ほどのプロジェクトに含まれていたFetchComponentを完成させてください
-    - FetchComponentの中で**GitHubのAPIと通信して、特定のレポジトリのスター数を描画**してみましょう
-    - [このレポジトリ](https://github.com/facebook/react)のstar数を取得して表示するコンポーネントを作成してください
-        - **ただし再レンダリングの度にAPIとの通信が発生しないように気をつけましょう！**初回表示の時に一度だけ通信が発生するようにしてください
-            - ヒント：codesandboxだと開発者コンソールのnetworkタブが正しく動かないことがあるようなので、console.logで確認する程度で問題ありません
-        - ヒント：`https://api.github.com/repos/facebook/react`を呼び出してみましょう！[fetch](https://developer.mozilla.org/ja/docs/Web/API/Fetch_API)を使うと良いかもしれません
-        - ヒント：再レンダリングの度にリクエストが飛ばないようにするためには、useEffectの第2引数に何かを指定する必要があるはずです！
+### 問題1
+
+https://codesandbox.io/p/sandbox/p-challenge-44-3-1-tx875x
