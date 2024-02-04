@@ -1,0 +1,75 @@
+.todoList {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.todoItemSuccess {
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.todoItem:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.todoItem:last-child {
+  margin-bottom: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.todoButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.button {
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.buttonXS {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.btnSuccess {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btnSuccess:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btnDanger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btnDanger:hover {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
