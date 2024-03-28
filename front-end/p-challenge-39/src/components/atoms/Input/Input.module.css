@@ -1,0 +1,47 @@
+.input_wrapper {
+  position: relative;
+  width: 100%;
+  font-size: 1rem;
+  border-width: 1px;
+  border-color: var(--accent-2);
+  background-color: var(--accent-0);
+  line-height: 1.5rem;
+  color: var(--text-base);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.input {
+  width: 100%;
+  appearance: none;
+  background-color: transparent;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input::placeholder {
+  color: var(--accent-3);
+}
+
+.input:focus {
+  --tw-shadow: 0 0 0 2px var(--accent-2);
+  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.iconContainer {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 0.75rem;
+}

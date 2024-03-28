@@ -1,0 +1,65 @@
+.root {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  max-height: 100%;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  height: 100% !important;
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  padding-right: 4rem;
+  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
+    -webkit-text-decoration-color;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.name {
+  width: 100%;
+  max-width: 100%;
+  padding-top: 0;
+  line-height: 2.2;
+  font-size: 2rem;
+  letter-spacing: 0.4px;
+  line-height: 2.1em;
+}
+
+.name span {
+  background-color: var(--primary);
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-height: 70px;
+  font-size: inherit;
+  letter-spacing: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.tagPrice {
+}
+
+.imageContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
