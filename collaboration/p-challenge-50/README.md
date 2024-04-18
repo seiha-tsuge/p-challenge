@@ -20,3 +20,5 @@
 [What Is a Linter? Here’s a Definition and Quick-Start Guide](https://www.testim.io/blog/what-is-a-linter-heres-a-definition-and-quick-start-guide/)
 
 ### 問題 2
+
+開発者が意図的に無効化することができます。
