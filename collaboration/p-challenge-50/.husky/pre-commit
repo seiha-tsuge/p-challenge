@@ -1,1 +1,3 @@
+cd collaboration/p-challenge-50/
+
 npx lint-staged
