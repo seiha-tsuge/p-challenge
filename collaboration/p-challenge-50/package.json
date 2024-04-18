@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "prepare": "cd ../.. && husky collaboration/p-challenge-50/.husky",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "license": "UNLICENSED",
   "devDependencies": {
