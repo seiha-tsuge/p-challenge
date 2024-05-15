@@ -1,0 +1,22 @@
+.button {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btnPrimary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.btnPrimary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
